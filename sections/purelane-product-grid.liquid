@@ -1,0 +1,121 @@
+{% comment %}
+  Purelane Theme - Shop / Product Grid Section
+  Visual Source of Truth: purelane-homepage.html lines 1247-1432
+{% endcomment %}
+
+{{ 'purelane-theme.css' | asset_url | stylesheet_tag }}
+
+<section class="sec" id="shop" data-scene="3">
+  <div class="wrap">
+    <div class="panel-head rv">
+      <span class="kicker">{{ section.settings.kicker | default: 'Bestsellers' }}</span>
+      <h2 class="d2" style="margin-top:12px">{{ section.settings.title | default: 'Loved by 30,000 homes' }}</h2>
+      <div class="rule">
+        <i></i>
+        {% render 'purelane-svg-icons', icon: 'plant' %}
+        <i></i>
+      </div>
+    </div>
+
+    <div class="shelf">
+      {% assign collection = section.settings.collection %}
+      {% if collection and collection.products.size > 0 %}
+        {% for product in collection.products limit: section.settings.products_to_show %}
+          {% assign badge_label = 'Best seller' %}
+          {% if forloop.index == 3 %}
+            {% assign badge_label = 'Top rated' %}
+          {% elsif forloop.index == 4 %}
+            {% assign badge_label = 'New' %}
+          {% endif %}
+          {% render 'card-product-purelane', card_product: product, badge_label: badge_label %}
+        {% endfor %}
+      {% else %}
+        {% comment %} Fallback Static Products Matching Reference prototype {% endcomment %}
+        <article class="glass card rv">
+          <div class="shot">
+            <span class="pill">Best seller</span>
+            <span class="pimg p-tap" role="img" aria-label="Tap cleaner and limescale remover spray"></span>
+          </div>
+          <h4>Tap cleaner &amp; limescale remover</h4>
+          <div class="rate"><b>★ 4.8</b> · 237 reviews</div>
+          <div class="pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+          <button class="btn btn-ghost btn-sm">Add to cart</button>
+        </article>
+
+        <article class="glass card rv rv-d1">
+          <div class="shot">
+            <span class="pill">Best seller</span>
+            <span class="pimg p-kitchen" role="img" aria-label="Foaming kitchen cleaner spray"></span>
+          </div>
+          <h4>Kitchen cleaner, foaming</h4>
+          <div class="rate"><b>★ 4.8</b> · 254 reviews</div>
+          <div class="pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+          <button class="btn btn-ghost btn-sm">Add to cart</button>
+        </article>
+
+        <article class="glass card rv rv-d2">
+          <div class="shot">
+            <span class="pill">Top rated</span>
+            <span class="pimg p-metal" role="img" aria-label="Copper, bronze and brass cleaner"></span>
+          </div>
+          <h4>Copper, bronze &amp; brass cleaner</h4>
+          <div class="rate"><b>★ 4.8</b> · 231 reviews</div>
+          <div class="pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+          <button class="btn btn-ghost btn-sm">Add to cart</button>
+        </article>
+
+        <article class="glass card rv rv-d3">
+          <div class="shot">
+            <span class="pill">New</span>
+            <span class="pimg p-wm" role="img" aria-label="Washing machine cleaner and descaler"></span>
+          </div>
+          <h4>Washing machine cleaner &amp; descaler</h4>
+          <div class="rate"><b>★ 4.8</b> · 183 reviews</div>
+          <div class="pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+          <button class="btn btn-ghost btn-sm">Add to cart</button>
+        </article>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane Product Grid",
+  "tag": "section",
+  "class": "purelane-product-grid-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Bestsellers"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Loved by 30,000 homes"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 12,
+      "step": 4,
+      "default": 4,
+      "label": "Products to show"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Product Grid"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,89 @@
+{% comment %}
+  Purelane Theme - Reusable Product Card Snippet
+  Handles edge cases: sold out, missing images, long titles, compare prices, badges, and AJAX cart submission.
+  Usage: {% render 'card-product-purelane', card_product: product, badge_label: 'Best seller' %}
+{% endcomment %}
+
+{%- liquid
+  assign product = card_product
+  assign is_available = product.available
+  assign featured_img = product.featured_media | default: product.featured_image
+  assign title = product.title | default: 'Purelane Botanical Product'
+  assign price = product.price | default: 20000
+  assign compare_price = product.compare_at_price | default: 29900
+  assign badge = badge_label
+
+  if compare_price > price
+    assign savings = compare_price | minus: price
+    assign save_pct = savings | times: 100.0 | divided_by: compare_price | round
+  endif
+
+  assign rating_val = product.metafields.reviews.rating.value.rating | default: '4.8'
+  assign rating_count = product.metafields.reviews.rating_count | default: 237
+-%}
+
+<article class="glass card rv{% if class_suffix %} {{ class_suffix }}{% endif %}" data-product-id="{{ product.id }}">
+  <div class="shot">
+    {% if is_available == false %}
+      <span class="pill sold-out">Sold out</span>
+    {% elsif badge != blank %}
+      <span class="pill">{{ badge }}</span>
+    {% elsif save_pct and save_pct > 0 %}
+      <span class="pill">{{ save_pct }}% off</span>
+    {% endif %}
+
+    <a href="{{ product.url | default: '#shop' }}" class="pimg-link" aria-label="{{ title | escape }}">
+      {% if featured_img %}
+        <img
+          src="{{ featured_img | image_url: width: 300 }}"
+          srcset="{{ featured_img | image_url: width: 150 }} 150w, {{ featured_img | image_url: width: 300 }} 300w, {{ featured_img | image_url: width: 450 }} 450w"
+          sizes="(max-width: 600px) 150px, 300px"
+          alt="{{ featured_img.alt | default: title | escape }}"
+          loading="lazy"
+          width="150"
+          height="200"
+          class="purelane-card-image"
+        >
+      {% else %}
+        {% comment %} Fallback SVG when image is missing {% endcomment %}
+        <svg viewBox="0 0 130 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="{{ title | escape }}">
+          <ellipse cx="65" cy="190" rx="40" ry="7" fill="#01201c" opacity=".5"/>
+          <path d="M40 60V48c0-7 5-12 12-12h13c8 0 13 6 13 13v11Z" fill="#7d938c"/>
+          <rect x="38" y="56" width="42" height="7" rx="3" fill="#a8bdb2"/>
+          <rect x="41" y="62" width="36" height="16" rx="4" fill="#04756e"/>
+          <path d="M28 96c0-11 6-18 15-24v-8h33v8c9 6 15 13 15 24v62c0 12-8 20-21 20H49c-13 0-21-8-21-20Z" fill="rgba(255,255,255,.3)" stroke="rgba(255,255,255,.4)" stroke-width="1.4"/>
+          <rect x="31" y="112" width="66" height="60" rx="6" fill="#4b3a8f"/>
+          <text x="64" y="140" text-anchor="middle" font-family="Outfit, sans-serif" font-size="8.6" font-weight="800" fill="#faf7fd">PURELANE</text>
+          <text x="64" y="156" text-anchor="middle" font-family="Inter, sans-serif" font-size="6" font-weight="700" fill="#ece6f7">BOTANICAL</text>
+        </svg>
+      {% endif %}
+    </a>
+  </div>
+
+  <h4>
+    <a href="{{ product.url | default: '#shop' }}">{{ title | truncate: 60 }}</a>
+  </h4>
+
+  <div class="rate">
+    <b>★ {{ rating_val }}</b> · {{ rating_count }} reviews
+  </div>
+
+  <div class="pr">
+    <strong>{{ price | money }}</strong>
+    {% if compare_price > price %}
+      <s>{{ compare_price | money }}</s>
+      {% if save_pct and save_pct > 0 %}
+        <em>{{ save_pct }}% off</em>
+      {% endif %}
+    {% endif %}
+  </div>
+
+  {% if is_available %}
+    <form method="post" action="/cart/add" class="purelane-cart-form">
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id | default: 1 }}">
+      <button type="submit" class="btn btn-ghost btn-sm">Add to cart</button>
+    </form>
+  {% else %}
+    <button class="btn btn-ghost btn-sm" disabled aria-disabled="true">Sold out</button>
+  {% endif %}
+</article>

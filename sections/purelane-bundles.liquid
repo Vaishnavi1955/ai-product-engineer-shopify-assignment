@@ -1,0 +1,194 @@
+{% comment %}
+  Purelane Theme - Bundles Section
+  Visual Source of Truth: purelane-homepage.html lines 1195-1246
+{% endcomment %}
+
+{{ 'purelane-theme.css' | asset_url | stylesheet_tag }}
+
+<section class="sec" id="bundles" data-scene="3">
+  <div class="wrap">
+    <div class="glass sec-pad rv" style="margin-bottom:16px">
+      <div class="panel-head" style="margin-bottom:0">
+        <span class="kicker">{{ section.settings.kicker | default: 'Build your bundle' }}</span>
+        <h2 class="d2" style="margin-top:12px">{{ section.settings.title | default: 'One box. Every room.' }}</h2>
+        <p class="lede" style="margin:0 auto">
+          {{ section.settings.subtitle | default: 'Mix and match across kitchen, laundry, home and skin. One flat price, no code needed, free shipping either way.' }}
+        </p>
+      </div>
+    </div>
+
+    <div class="tiers">
+      {% for block in section.blocks %}
+        <article class="glass tier{% if block.settings.is_best %} best{% endif %} rv{% if forloop.index > 1 %} rv-d{{ forloop.index | minus: 1 }}{% endif %}" {{ block.shopify_attributes }}>
+          {% if block.settings.tag_text != blank %}
+            <span class="tag">{{ block.settings.tag_text }}</span>
+          {% endif %}
+
+          <div class="tierpix{% if block.settings.item_count >= 5 %} five{% endif %}" aria-hidden="true">
+            {% if block.settings.thumb_1 != blank %}
+              <span class="pimg {{ block.settings.thumb_1 }}"></span>
+            {% endif %}
+            {% if block.settings.thumb_2 != blank %}
+              <span class="pimg {{ block.settings.thumb_2 }}"></span>
+            {% endif %}
+            {% if block.settings.thumb_3 != blank %}
+              <span class="pimg {{ block.settings.thumb_3 }}"></span>
+            {% endif %}
+            {% if block.settings.thumb_4 != blank %}
+              <span class="pimg {{ block.settings.thumb_4 }}"></span>
+            {% endif %}
+            {% if block.settings.thumb_5 != blank %}
+              <span class="pimg {{ block.settings.thumb_5 }}"></span>
+            {% endif %}
+          </div>
+
+          <div class="qty">
+            {{ block.settings.item_count }}
+            <small>Products</small>
+          </div>
+
+          <div class="price">
+            {{ block.settings.price }}
+            {% if block.settings.compare_price != blank %}
+              <s>{{ block.settings.compare_price }}</s>
+            {% endif %}
+          </div>
+
+          {% if block.settings.unit_price != blank %}
+            <p class="body-s" style="font-size:12px">{{ block.settings.unit_price }}</p>
+          {% endif %}
+
+          <ul>
+            {% if block.settings.feature_1 != blank %}
+              <li>{% render 'purelane-svg-icons', icon: 'check' %}{{ block.settings.feature_1 }}</li>
+            {% endif %}
+            {% if block.settings.feature_2 != blank %}
+              <li>{% render 'purelane-svg-icons', icon: 'check' %}{{ block.settings.feature_2 }}</li>
+            {% endif %}
+            {% if block.settings.feature_3 != blank %}
+              <li>{% render 'purelane-svg-icons', icon: 'check' %}{{ block.settings.feature_3 }}</li>
+            {% endif %}
+          </ul>
+
+          <a class="btn {% if block.settings.is_best %}btn-primary{% else %}btn-ghost{% endif %}" href="{{ block.settings.button_link | default: '#shop' }}">
+            {{ block.settings.button_label | default: 'Build this box' }}
+            {% if block.settings.is_best %}
+              {% render 'purelane-svg-icons', icon: 'arrow-right' %}
+            {% endif %}
+          </a>
+        </article>
+      {% else %}
+        {% comment %} Default Preset Tiers Matching Reference HTML {% endcomment %}
+        <article class="glass tier rv">
+          <span class="tag">Starter</span>
+          <div class="tierpix" aria-hidden="true">
+            <span class="pimg p-combo2" role="img"></span>
+          </div>
+          <div class="qty">2<small>Products</small></div>
+          <div class="price">₹349 <s>₹598</s></div>
+          <p class="body-s" style="font-size:12px">Flat ₹174 per product</p>
+          <ul>
+            <li>{% render 'purelane-svg-icons', icon: 'check' %}Pick any two products</li>
+            <li>{% render 'purelane-svg-icons', icon: 'check' %}Free shipping across India</li>
+          </ul>
+          <a class="btn btn-ghost" href="#shop">Build this box</a>
+        </article>
+
+        <article class="glass tier best rv rv-d2">
+          <span class="tag">Most popular</span>
+          <div class="tierpix" aria-hidden="true">
+            <span class="pimg p-kitchen"></span>
+            <span class="pimg p-tap"></span>
+            <span class="pimg p-dish"></span>
+          </div>
+          <div class="qty">3<small>Products</small></div>
+          <div class="price">₹499 <s>₹897</s></div>
+          <p class="body-s" style="font-size:12px">Flat ₹166 per product</p>
+          <ul>
+            <li>{% render 'purelane-svg-icons', icon: 'check' %}Pick any three products</li>
+            <li>{% render 'purelane-svg-icons', icon: 'check' %}Covers kitchen and laundry</li>
+            <li>{% render 'purelane-svg-icons', icon: 'check' %}Free shipping across India</li>
+          </ul>
+          <a class="btn btn-primary" href="#shop">Build this box {% render 'purelane-svg-icons', icon: 'arrow-right' %}</a>
+        </article>
+
+        <article class="glass tier rv rv-d3">
+          <span class="tag">Whole home</span>
+          <div class="tierpix five" aria-hidden="true">
+            <span class="pimg p-kitchen"></span>
+            <span class="pimg p-tap"></span>
+            <span class="pimg p-floor"></span>
+            <span class="pimg p-toilet"></span>
+            <span class="pimg p-laundry"></span>
+          </div>
+          <div class="qty">5<small>Products</small></div>
+          <div class="price">₹799 <s>₹1495</s></div>
+          <p class="body-s" style="font-size:12px">Flat ₹160 per product</p>
+          <ul>
+            <li>{% render 'purelane-svg-icons', icon: 'check' %}Pick any five products</li>
+            <li>{% render 'purelane-svg-icons', icon: 'check' %}Every room in one order</li>
+            <li>{% render 'purelane-svg-icons', icon: 'check' %}Free shipping across India</li>
+          </ul>
+          <a class="btn btn-ghost" href="#shop">Build this box</a>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane Bundles",
+  "tag": "section",
+  "class": "purelane-bundles-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Build your bundle"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "One box. Every room."
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Mix and match across kitchen, laundry, home and skin. One flat price, no code needed, free shipping either way."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tier",
+      "name": "Bundle Tier",
+      "settings": [
+        { "type": "checkbox", "id": "is_best", "label": "Highlight Tier (Best Value)", "default": false },
+        { "type": "text", "id": "tag_text", "label": "Tag Text", "default": "Starter" },
+        { "type": "number", "id": "item_count", "label": "Product Quantity", "default": 2 },
+        { "type": "text", "id": "price", "label": "Price", "default": "₹349" },
+        { "type": "text", "id": "compare_price", "label": "Compare Price", "default": "₹598" },
+        { "type": "text", "id": "unit_price", "label": "Unit Price Note", "default": "Flat ₹174 per product" },
+        { "type": "text", "id": "feature_1", "label": "Feature Line 1", "default": "Pick any two products" },
+        { "type": "text", "id": "feature_2", "label": "Feature Line 2", "default": "Free shipping across India" },
+        { "type": "text", "id": "feature_3", "label": "Feature Line 3" },
+        { "type": "text", "id": "button_label", "label": "Button Label", "default": "Build this box" },
+        { "type": "url", "id": "button_link", "label": "Button Link" },
+        { "type": "text", "id": "thumb_1", "label": "Thumbnail 1 CSS Class", "default": "p-kitchen" },
+        { "type": "text", "id": "thumb_2", "label": "Thumbnail 2 CSS Class", "default": "p-tap" },
+        { "type": "text", "id": "thumb_3", "label": "Thumbnail 3 CSS Class" },
+        { "type": "text", "id": "thumb_4", "label": "Thumbnail 4 CSS Class" },
+        { "type": "text", "id": "thumb_5", "label": "Thumbnail 5 CSS Class" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Bundles"
+    }
+  ]
+}
+{% endschema %}
