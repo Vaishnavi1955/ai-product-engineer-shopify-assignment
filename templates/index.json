@@ -1,75 +1,167 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "button"
-      ],
+    "purelane_header": {
+      "type": "purelane-header",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "show_ticker": true,
+        "brand_title": "Purelane",
+        "brand_subtitle": "Clean, simply"
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "purelane_hero": {
+      "type": "purelane-hero",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "title_line1": "Clean",
+        "title_line2": "That",
+        "title_highlight": "Lasts",
+        "subheading": "Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it.",
+        "btn1_label": "Shop now",
+        "btn1_link": "#shop",
+        "btn2_label": "How it works",
+        "btn2_link": "#how",
+        "s1_label": "Single bottle",
+        "s1_price": "₹200",
+        "s1_compare": "₹299",
+        "s1_tag": "33% off",
+        "s2_label": "Any 2 products",
+        "s2_price": "₹349",
+        "s2_compare": "₹598",
+        "s2_tag": "Save ₹249",
+        "s3_label": "Any 3 products",
+        "s3_price": "₹499",
+        "s3_compare": "₹897",
+        "s3_tag": "Save ₹398"
+      }
+    },
+    "purelane_reviews_rail": {
+      "type": "purelane-reviews-rail",
+      "settings": {
+        "kicker": "That's what they said",
+        "rating_score": "4.8",
+        "rating_count": "8,000+",
+        "homes_count": "12 lakh+"
+      }
+    },
+    "purelane_ingredients": {
+      "type": "purelane-ingredients",
+      "settings": {
+        "title": "Sourced from nature"
+      }
+    },
+    "purelane_pillars": {
+      "type": "purelane-pillars",
+      "settings": {}
+    },
+    "purelane_proof": {
+      "type": "purelane-proof",
+      "settings": {
+        "kicker": "Why it works",
+        "title": "Tough on grime.<br>Gentle on everything else.",
+        "subtitle": "Every formula is built on plant-derived cleansers and essential oils. It behaves exactly like the cleaner you are used to, minus the things you never signed up for.",
+        "button_label": "See the ingredient list",
+        "button_link": "#ingredients"
+      }
+    },
+    "purelane_combos": {
+      "type": "purelane-combos",
+      "settings": {
+        "kicker": "Pre-built to save you money",
+        "title": "Best selling combos",
+        "subtitle": "Swipe through the boxes people order most. Each one is already priced below buying the same products on their own."
+      }
+    },
+    "purelane_bundles": {
+      "type": "purelane-bundles",
+      "settings": {
+        "kicker": "Build your bundle",
+        "title": "One box. Every room.",
+        "subtitle": "Mix and match across kitchen, laundry, home and skin. One flat price, no code needed, free shipping either way."
+      }
+    },
+    "purelane_product_grid": {
+      "type": "purelane-product-grid",
+      "settings": {
+        "kicker": "Bestsellers",
+        "title": "Loved by 30,000 homes",
+        "products_to_show": 4
+      }
+    },
+    "purelane_full_range": {
+      "type": "purelane-full-range",
+      "settings": {
+        "kicker": "The full range",
+        "title": "Every room, one shelf",
+        "subtitle": "Floors, taps, kitchen, laundry, bathroom and hands. Fourteen plant-based formulas that replace every harsh bottle under your sink."
+      }
+    },
+    "purelane_why_bundles": {
+      "type": "purelane-why-bundles",
+      "settings": {
+        "kicker": "The smarter way to shop",
+        "title": "Why bundles beat buying single"
+      }
+    },
+    "purelane_bundle_categories": {
+      "type": "purelane-bundle-categories",
+      "settings": {
+        "kicker": "Bundle categories",
+        "title": "Find the right bundle for you"
+      }
+    },
+    "purelane_trust_bar": {
+      "type": "purelane-trust-bar",
+      "settings": {}
+    },
+    "purelane_newsletter": {
+      "type": "purelane-newsletter",
+      "settings": {
+        "kicker": "Join the Purelane Club",
+        "title": "Get ₹100 off your first bundle",
+        "subtitle": "Plus first access to new launches and restocks.",
+        "placeholder": "your@email.com",
+        "button_label": "Get my ₹100 off"
+      }
+    },
+    "purelane_footer": {
+      "type": "purelane-footer",
+      "settings": {
+        "brand_title": "Purelane",
+        "brand_subtitle": "Clean, simply",
+        "about_text": "Effective cleaning, powered by nature. Made for Indian homes since day one.",
+        "email": "hello@purelane.com",
+        "phone": "+919930123234",
+        "phone_display": "+91 9930 123 234",
+        "company_name": "Purelane Eco Products Pvt Ltd",
+        "copyright_text": "Purelane Eco Products Private Limited"
+      }
+    },
+    "purelane_sticky_cta": {
+      "type": "purelane-sticky-cta",
+      "settings": {
+        "enable_sticky": true,
+        "bold_label": "Pick any 3, pay ₹499",
+        "sub_label": "Free shipping, always",
+        "button_label": "Build bundle",
+        "button_link": "#bundles"
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "purelane_header",
+    "purelane_hero",
+    "purelane_reviews_rail",
+    "purelane_ingredients",
+    "purelane_pillars",
+    "purelane_proof",
+    "purelane_combos",
+    "purelane_bundles",
+    "purelane_product_grid",
+    "purelane_full_range",
+    "purelane_why_bundles",
+    "purelane_bundle_categories",
+    "purelane_trust_bar",
+    "purelane_newsletter",
+    "purelane_footer",
+    "purelane_sticky_cta"
   ]
 }

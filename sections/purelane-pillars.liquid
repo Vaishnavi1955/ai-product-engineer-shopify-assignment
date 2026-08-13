@@ -1,0 +1,88 @@
+{% comment %}
+  Purelane Theme - Pillars Section
+  Visual Source of Truth: purelane-homepage.html lines 1105-1136
+{% endcomment %}
+
+{{ 'purelane-theme.css' | asset_url | stylesheet_tag }}
+
+<section class="sec" id="how" data-scene="2">
+  <div class="wrap">
+    <div class="pillars">
+      {% for block in section.blocks %}
+        <article class="glass pillar rv{% if forloop.index > 1 %} rv-d{{ forloop.index }}{% endif %}" {{ block.shopify_attributes }}>
+          <span class="pi">
+            {% render 'purelane-svg-icons', icon: block.settings.icon %}
+          </span>
+          <h3 class="d3">{{ block.settings.title }}</h3>
+          <p class="body-s">{{ block.settings.text }}</p>
+          {% if block.settings.button_label != blank %}
+            <a class="btn btn-ghost btn-sm" href="{{ block.settings.button_link | default: '#shop' }}">
+              {{ block.settings.button_label }}
+            </a>
+          {% endif %}
+        </article>
+      {% else %}
+        {% comment %} Default Presets Matching Reference HTML {% endcomment %}
+        <article class="glass pillar rv">
+          <span class="pi">{% render 'purelane-svg-icons', icon: 'plant' %}</span>
+          <h3 class="d3">Less scrubbing</h3>
+          <p class="body-s">A foaming formulation. The foam clings to grease and lifts it, so you wipe instead of scrub.</p>
+          <a class="btn btn-ghost btn-sm" href="#shop">Learn more</a>
+        </article>
+        <article class="glass pillar rv rv-d2">
+          <span class="pi">{% render 'purelane-svg-icons', icon: 'shield' %}</span>
+          <h3 class="d3">Clean ingredients</h3>
+          <p class="body-s">No sulphates, no chlorine, no synthetic fragrance. Nothing on the label you would not want near your food.</p>
+          <a class="btn btn-ghost btn-sm" href="#ingredients">Learn more</a>
+        </article>
+        <article class="glass pillar rv rv-d3">
+          <span class="pi">{% render 'purelane-svg-icons', icon: 'heart' %}</span>
+          <h3 class="d3">Safe around everyone</h3>
+          <p class="body-s">Gentle on hands, safe around kids and pets, and it leaves no toxic residue on the surfaces you touch every day.</p>
+          <a class="btn btn-ghost btn-sm" href="#proof">Learn more</a>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane Pillars",
+  "tag": "section",
+  "class": "purelane-pillars-section",
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Pillar Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "plant", "label": "Plant" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "heart", "label": "Heart" }
+          ],
+          "default": "plant"
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "Less scrubbing" },
+        { "type": "textarea", "id": "text", "label": "Description", "default": "A foaming formulation. The foam clings to grease and lifts it." },
+        { "type": "text", "id": "button_label", "label": "Button Label", "default": "Learn more" },
+        { "type": "url", "id": "button_link", "label": "Button Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Pillars",
+      "blocks": [
+        { "type": "pillar", "settings": { "icon": "plant", "title": "Less scrubbing", "text": "A foaming formulation. The foam clings to grease and lifts it, so you wipe instead of scrub.", "button_label": "Learn more" } },
+        { "type": "pillar", "settings": { "icon": "shield", "title": "Clean ingredients", "text": "No sulphates, no chlorine, no synthetic fragrance. Nothing on the label you would not want near your food.", "button_label": "Learn more" } },
+        { "type": "pillar", "settings": { "icon": "heart", "title": "Safe around everyone", "text": "Gentle on hands, safe around kids and pets, and it leaves no toxic residue on the surfaces you touch every day.", "button_label": "Learn more" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

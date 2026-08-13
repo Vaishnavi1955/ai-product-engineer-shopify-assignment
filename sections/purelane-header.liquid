@@ -1,0 +1,135 @@
+{% comment %}
+  Purelane Theme - Global Header & Navigation Section
+  Visual Source of Truth: purelane-homepage.html lines 826-870, 901-940
+{% endcomment %}
+
+{{ 'purelane-theme.css' | asset_url | stylesheet_tag }}
+
+{% comment %} Background Water & Scenes Canvas {% endcomment %}
+<div class="scenes" id="scenes" data-d="1">
+  <div class="scene s1 on"></div>
+  <div class="scene s2"></div>
+  <div class="scene s3"></div>
+  <div class="scene s4"></div>
+
+  <div class="water" id="water">
+    <div class="wl wl-a">
+      <svg class="sv" viewBox="0 0 1800 1100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="cg" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#eafff4" stop-opacity="0"/>
+            <stop offset=".18" stop-color="#f2fff8" stop-opacity=".95"/>
+            <stop offset=".5" stop-color="#ffffff" stop-opacity="1"/>
+            <stop offset=".82" stop-color="#e6fbef" stop-opacity=".9"/>
+            <stop offset="1" stop-color="#eafff4" stop-opacity="0"/>
+          </linearGradient>
+          <filter id="wf" x="-12%" y="-12%" width="124%" height="124%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.0022 0.019" numOctaves="3" seed="21" result="n"/>
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="72" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+        </defs>
+        <g filter="url(#wf)">
+          <path d="M262 230 Q372 261 482 238 Q592 247 702 250 Q812 210 923 235 Q1033 201 1143 213 Q1253 232 1363 215 Q1473 261 1583 238 Q1694 248 1804 250 Q2134 201 2244 214" stroke="url(#cg)" stroke-width="1.7" fill="none" opacity="0.45" stroke-linecap="round"/>
+          <path d="M137 256 Q307 242 477 258 Q646 238 816 245 Q985 259 1155 247 Q1324 277 1494 262 Q1664 267 1833 269 Q2003 243 2172 259 Q2342 237 2512 245" stroke="url(#cg)" stroke-width="5.1" fill="none" opacity="0.23" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+    <div class="wl wl-b"></div>
+    <div class="wl wl-c"></div>
+    <div class="wl wl-s"></div>
+  </div>
+
+  <div class="bub" aria-hidden="true">
+    <span style="--x:12%;--s:14px;--dur:14s;--dly:0s;--drift:20px;"></span>
+    <span style="--x:34%;--s:22px;--dur:18s;--dly:3s;--drift:-30px;"></span>
+    <span style="--x:62%;--s:18px;--dur:16s;--dly:1.5s;--drift:15px;"></span>
+    <span style="--x:84%;--s:12px;--dur:12s;--dly:5s;--drift:-25px;"></span>
+  </div>
+  <div class="vig"></div>
+</div>
+
+{% comment %} Ticker Announcement Bar {% endcomment %}
+{% if section.settings.show_ticker %}
+  <div class="ticker">
+    <div class="track">
+      <span><b>FREE SHIPPING</b> ACROSS INDIA ON ALL ORDERS</span>
+      <span>PLANT-POWERED HOMECARE &middot; <b>NO HARSH CHEMICALS</b></span>
+      <span>OVER 12 LAKH+ HOMES TRUST <b>PURELANE</b></span>
+      <span><b>FREE SHIPPING</b> ACROSS INDIA ON ALL ORDERS</span>
+      <span>PLANT-POWERED HOMECARE &middot; <b>NO HARSH CHEMICALS</b></span>
+    </div>
+  </div>
+{% endif %}
+
+{% comment %} Header Navigation Bar {% endcomment %}
+<header id="hdr" class="purelane-header">
+  <div class="navpill glass">
+    <a class="brand" href="{{ routes.root_url }}" aria-label="{{ shop.name }} Home">
+      <span class="mark">
+        {% render 'purelane-svg-icons', icon: 'leaf-mark' %}
+      </span>
+      <span class="txt">
+        <span class="n1">{{ section.settings.brand_title | default: 'Purelane' }}</span>
+        <span class="n2">{{ section.settings.brand_subtitle | default: 'Clean, simply' }}</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Main navigation">
+      {% if section.settings.menu != blank %}
+        {% for link in section.settings.menu.links %}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {% endfor %}
+      {% else %}
+        <a href="#top">Home</a>
+        <a href="#ingredients">Ingredients</a>
+        <a href="#how">How it works</a>
+        <a href="#shop">Shop</a>
+        <a href="#bundles">Bundles</a>
+      {% endif %}
+    </nav>
+
+    <div class="navtools">
+      <a href="{{ routes.search_url }}" class="ico hide-s" aria-label="Search">
+        {% render 'purelane-svg-icons', icon: 'search' %}
+      </a>
+      <a href="{{ routes.account_url }}" class="ico hide-s" aria-label="Account">
+        {% render 'purelane-svg-icons', icon: 'account' %}
+      </a>
+      <a href="{{ routes.cart_url }}" class="ico" aria-label="Cart, {{ cart.item_count }} items">
+        {% render 'purelane-svg-icons', icon: 'cart' %}
+        <span class="dot">{{ cart.item_count }}</span>
+      </a>
+      <button class="ico burger" aria-label="Menu">
+        {% render 'purelane-svg-icons', icon: 'menu' %}
+      </button>
+    </div>
+  </div>
+</header>
+
+{% comment %} Progress Rail {% endcomment %}
+<nav class="rail" aria-label="Section progress">
+  <a href="#top" class="on" aria-label="Hero"></a>
+  <a href="#ingredients" aria-label="Ingredients"></a>
+  <a href="#how" aria-label="How it works"></a>
+  <a href="#proof" aria-label="Proof"></a>
+  <a href="#bundles" aria-label="Bundles"></a>
+  <a href="#shop" aria-label="Shop"></a>
+  <a href="#reviews" aria-label="Reviews"></a>
+</nav>
+
+{% schema %}
+{
+  "name": "Purelane Header & Chrome",
+  "tag": "section",
+  "class": "purelane-header-section",
+  "settings": [
+    { "type": "checkbox", "id": "show_ticker", "label": "Show Ticker Bar", "default": true },
+    { "type": "text", "id": "brand_title", "label": "Brand Title", "default": "Purelane" },
+    { "type": "text", "id": "brand_subtitle", "label": "Brand Subtitle", "default": "Clean, simply" },
+    { "type": "link_list", "id": "menu", "label": "Navigation Menu" }
+  ],
+  "presets": [
+    { "name": "Purelane Header & Chrome" }
+  ]
+}
+{% endschema %}

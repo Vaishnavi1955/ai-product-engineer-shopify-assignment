@@ -1,0 +1,76 @@
+{% comment %}
+  Purelane Theme - Trust Bar Section
+  Visual Source of Truth: purelane-homepage.html lines 1477-1499
+{% endcomment %}
+
+{{ 'purelane-theme.css' | asset_url | stylesheet_tag }}
+
+<section class="sec" data-scene="4">
+  <div class="wrap">
+    <div class="glass trust rv">
+      {% for block in section.blocks %}
+        <div class="trust-i" {{ block.shopify_attributes }}>
+          {% render 'purelane-svg-icons', icon: block.settings.icon %}
+          <span>{{ block.settings.title | replace: '\n', '<br>' }}</span>
+        </div>
+      {% else %}
+        <div class="trust-i">
+          {% render 'purelane-svg-icons', icon: 'plant' %}
+          <span>Plant derived<br>formulas</span>
+        </div>
+        <div class="trust-i">
+          {% render 'purelane-svg-icons', icon: 'recycle' %}
+          <span>Recyclable<br>packaging</span>
+        </div>
+        <div class="trust-i">
+          {% render 'purelane-svg-icons', icon: 'heart' %}
+          <span>Safe for<br>kids &amp; pets</span>
+        </div>
+        <div class="trust-i">
+          {% render 'purelane-svg-icons', icon: 'globe' %}
+          <span>Made in<br>India</span>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane Trust Bar",
+  "tag": "section",
+  "class": "purelane-trust-bar-section",
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Trust Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "plant", "label": "Plant" },
+            { "value": "recycle", "label": "Recycle" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "globe", "label": "Globe" }
+          ],
+          "default": "plant"
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "Plant derived\nformulas" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Trust Bar",
+      "blocks": [
+        { "type": "trust_item", "settings": { "icon": "plant", "title": "Plant derived\nformulas" } },
+        { "type": "trust_item", "settings": { "icon": "recycle", "title": "Recyclable\npackaging" } },
+        { "type": "trust_item", "settings": { "icon": "heart", "title": "Safe for\nkids & pets" } },
+        { "type": "trust_item", "settings": { "icon": "globe", "title": "Made in\nIndia" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

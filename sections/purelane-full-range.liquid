@@ -1,0 +1,54 @@
+{% comment %}
+  Purelane Theme - The Full Range Shelf Section
+  Visual Source of Truth: purelane-homepage.html lines 1435-1451
+{% endcomment %}
+
+{{ 'purelane-theme.css' | asset_url | stylesheet_tag }}
+
+<section class="sec" id="range" data-scene="3">
+  <div class="wrap">
+    <div class="glass range rv">
+      <div class="range-head">
+        <div>
+          <span class="kicker">{{ section.settings.kicker | default: 'The full range' }}</span>
+          <h2 class="d2" style="margin-top:10px">{{ section.settings.title | default: 'Every room, one shelf' }}</h2>
+        </div>
+        <p class="body-s" style="max-width:34ch;margin-bottom:4px">
+          {{ section.settings.subtitle | default: 'Floors, taps, kitchen, laundry, bathroom and hands. Fourteen plant-based formulas that replace every harsh bottle under your sink.' }}
+        </p>
+      </div>
+
+      <div class="stripwrap">
+        <div class="rangerow">
+          <span class="pimg p-floor" role="img" aria-label="Purelane floor cleaner"></span>
+          <span class="pimg p-tap" role="img" aria-label="Purelane tap cleaner"></span>
+          <span class="pimg p-kitchen" role="img" aria-label="Purelane kitchen cleaner"></span>
+          <span class="pimg p-toilet" role="img" aria-label="Purelane toilet cleaner"></span>
+          <span class="pimg p-laundry" role="img" aria-label="Purelane laundry detergent"></span>
+          <span class="pimg p-dish" role="img" aria-label="Purelane dishwash gel"></span>
+          <span class="pimg p-metal" role="img" aria-label="Purelane copper cleaner"></span>
+          <span class="pimg p-wm" role="img" aria-label="Purelane washing machine cleaner"></span>
+          <span class="pimg p-handwash" role="img" aria-label="Purelane liquid handwash"></span>
+          <span class="pimg p-eraser" role="img" aria-label="Purelane magic eraser"></span>
+        </div>
+      </div>
+      <p class="striphint">Swipe to see the full shelf</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane Full Range",
+  "tag": "section",
+  "class": "purelane-full-range-section",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "The full range" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Every room, one shelf" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Floors, taps, kitchen, laundry, bathroom and hands. Fourteen plant-based formulas." }
+  ],
+  "presets": [
+    { "name": "Purelane Full Range" }
+  ]
+}
+{% endschema %}
