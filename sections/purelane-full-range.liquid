@@ -25,6 +25,7 @@
             {% for product in collection.products limit: 12 %}
               <a href="{{ product.url }}" class="rangerow-link" aria-label="{{ product.title | escape }}" style="display:inline-flex;align-items:center;flex-shrink:0;">
                 {% if product.featured_image %}
+                  {% assign alt_txt = product.featured_image.alt | default: product.title | escape %}
                   {{
                     product.featured_image
                     | image_url: width: 240
@@ -32,7 +33,7 @@
                       loading: 'lazy',
                       widths: '120, 240',
                       sizes: '120px',
-                      alt: product.featured_image.alt | default: product.title | escape,
+                      alt: alt_txt,
                       style: 'height:116px;width:auto;object-fit:contain;'
                   }}
                 {% else %}
