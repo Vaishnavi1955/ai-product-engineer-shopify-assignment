@@ -36,7 +36,7 @@
         {% for block in section.blocks %}
           {% if block.type == 'menu' %}
             <div class="fcol" {{ block.shopify_attributes }}>
-              <h5>{{ block.settings.title }}</h5>
+              <h3>{{ block.settings.title }}</h3>
               {% if block.settings.menu != blank and block.settings.menu.links.size > 0 %}
                 {% for link in block.settings.menu.links %}
                   <a href="{{ link.url }}">{{ link.title }}</a>
@@ -48,7 +48,7 @@
       {% else %}
         {% comment %} Default Structured Columns {% endcomment %}
         <div class="fcol">
-          <h5>Shop</h5>
+          <h3>Shop</h3>
           <a href="{{ routes.all_products_collection_url }}">All Products</a>
           <a href="{% if template.name == 'index' %}#combos{% else %}{{ routes.root_url }}#combos{% endif %}">Best Selling Combos</a>
           <a href="{% if template.name == 'index' %}#bundles{% else %}{{ routes.root_url }}#bundles{% endif %}">Custom Box Bundles</a>
@@ -58,7 +58,7 @@
         </div>
 
         <div class="fcol">
-          <h5>Customer Support</h5>
+          <h3>Customer Support</h3>
           <a href="{{ pages['contact'].url | default: '/pages/contact' }}">Contact Us</a>
           <a href="{{ shop.policies.shipping_policy.url | default: pages['shipping-delivery'].url | default: '/pages/shipping-delivery' }}">Shipping &amp; Delivery</a>
           <a href="{{ shop.policies.refund_policy.url | default: pages['refund-policy'].url | default: '/pages/refund-policy' }}">Refund &amp; Returns</a>
@@ -68,7 +68,7 @@
         </div>
 
         <div class="fcol">
-          <h5>Get in Touch</h5>
+          <h3>Get in Touch</h3>
           <a href="{{ pages['contact'].url | default: '/pages/contact' }}">Product &amp; Order Support</a>
           <a href="mailto:{{ section.settings.email | default: shop.email | default: 'support@purelane.com' }}">{{ section.settings.email | default: shop.email | default: 'support@purelane.com' }}</a>
           <a href="tel:{{ section.settings.phone | default: '+919930123234' }}">{{ section.settings.phone_display | default: '+91 9930 123 234' }}</a>

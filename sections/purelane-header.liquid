@@ -22,7 +22,7 @@
 {% comment %} Header Navigation Bar {% endcomment %}
 <header id="hdr" class="purelane-header">
   <div class="navpill glass">
-    <a class="brand" href="{{ routes.root_url }}" aria-label="{{ shop.name }} Home">
+    <a class="brand" href="{{ routes.root_url }}" aria-label="{{ section.settings.brand_title | default: 'Purelane' }} - {{ section.settings.brand_subtitle | default: 'Clean, simply' }}">
       <span class="mark">
         {% render 'purelane-svg-icons', icon: 'leaf-mark' %}
       </span>

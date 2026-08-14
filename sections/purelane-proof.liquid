@@ -61,28 +61,28 @@
           {% for block in section.blocks %}
             <div class="stat" {{ block.shopify_attributes }}>
               <div class="ring">{{ block.settings.stat_value }}</div>
-              <h5>{{ block.settings.stat_title }}</h5>
+              <h3>{{ block.settings.stat_title }}</h3>
               <p>{{ block.settings.stat_desc }}</p>
             </div>
           {% else %}
             <div class="stat">
               <div class="ring">99.9%</div>
-              <h5>Germ kill</h5>
+              <h3>Germ kill</h3>
               <p>Tested against germs and bacteria</p>
             </div>
             <div class="stat">
               <div class="ring">0%</div>
-              <h5>Sulphates</h5>
+              <h3>Sulphates</h3>
               <p>No SLS, chlorine or parabens</p>
             </div>
             <div class="stat">
               <div class="ring">100%</div>
-              <h5>Plant based</h5>
+              <h3>Plant based</h3>
               <p>Cleansers derived from plants</p>
             </div>
             <div class="stat">
               <div class="ring">4.8</div>
-              <h5>Rated</h5>
+              <h3>Rated</h3>
               <p>Across 8,000+ verified reviews</p>
             </div>
           {% endfor %}
