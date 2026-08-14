@@ -1,0 +1,78 @@
+{
+  "sections": {
+    "page_hero": {
+      "type": "purelane-page-hero",
+      "settings": {
+        "kicker": "Store Terms & Conditions",
+        "title": "Terms of Service",
+        "breadcrumb_title": "Terms",
+        "subheading": "General terms and conditions governing store browsing, order placement, product use, and customer support.",
+        "badge_text": "Terms of Service"
+      }
+    },
+    "policy_content": {
+      "type": "purelane-policy",
+      "blocks": {
+        "hl_1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "shield",
+            "title": "Authentic Products",
+            "text": "All formulas sold on this store are authentic, plant-derived products packaged under our quality standards."
+          }
+        },
+        "hl_2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "check",
+            "title": "Transparent Pricing",
+            "text": "Product prices, bundle savings, and applicable delivery charges are calculated and displayed before checkout."
+          }
+        },
+        "clause_1": {
+          "type": "section_block",
+          "settings": {
+            "heading": "1. General Store Terms",
+            "body": "By accessing or purchasing from Purelane, you agree to these terms of service and all applicable laws and regulations. We reserve the right to update or modify store content, pricing, and policies at any time."
+          }
+        },
+        "clause_2": {
+          "type": "section_block",
+          "settings": {
+            "heading": "2. Product Use & Safety",
+            "body": "Purelane products are formulated for household surface cleaning, dishwashing, and laundry care as indicated on each label. Products are intended for external cleaning use and should be kept out of reach of children when unattended."
+          }
+        },
+        "clause_3": {
+          "type": "section_block",
+          "settings": {
+            "heading": "3. Customer Inquiries",
+            "body": "For questions or concerns regarding our terms of service, please contact our support team at support@purelane.com."
+          }
+        }
+      },
+      "block_order": [
+        "hl_1",
+        "hl_2",
+        "clause_1",
+        "clause_2",
+        "clause_3"
+      ],
+      "settings": {
+        "policy_kicker": "Store Terms",
+        "policy_title": "Terms of Service & Usage",
+        "last_updated": "August 2026",
+        "default_body": "Please review these terms before placing an order. Your continued use of the website signifies acceptance of these terms."
+      }
+    },
+    "trust_bar": {
+      "type": "purelane-trust-bar",
+      "settings": {}
+    }
+  },
+  "order": [
+    "page_hero",
+    "policy_content",
+    "trust_bar"
+  ]
+}

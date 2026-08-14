@@ -1,14 +1,29 @@
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "page_hero": {
+      "type": "purelane-page-hero",
       "settings": {
-        "padding_top": 28,
-        "padding_bottom": 28
+        "kicker": "Information",
+        "title": "Purelane",
+        "subheading": "Effective cleaning powered by nature. Formulated for modern Indian homes."
       }
+    },
+    "page_content": {
+      "type": "purelane-policy",
+      "settings": {
+        "policy_kicker": "Page Details",
+        "policy_title": "Information",
+        "last_updated": "August 2026"
+      }
+    },
+    "trust_bar": {
+      "type": "purelane-trust-bar",
+      "settings": {}
     }
   },
   "order": [
-    "main"
+    "page_hero",
+    "page_content",
+    "trust_bar"
   ]
 }

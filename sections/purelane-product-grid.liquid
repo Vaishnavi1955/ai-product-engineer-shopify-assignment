@@ -18,7 +18,7 @@
     </div>
 
     <div class="shelf">
-      {% assign collection = section.settings.collection %}
+      {% assign collection = section.settings.collection | default: collections['all'] %}
       {% if collection and collection.products.size > 0 %}
         {% for product in collection.products limit: section.settings.products_to_show %}
           {% assign badge_label = 'Best seller' %}
@@ -34,7 +34,9 @@
         <article class="glass card rv">
           <div class="shot">
             <span class="pill">Best seller</span>
-            <span class="pimg p-tap" role="img" aria-label="Tap cleaner and limescale remover spray"></span>
+            <div style="height:122px;width:80px;display:flex;align-items:center;justify-content:center;">
+              {% render 'purelane-product-icon', handle: 'tap' %}
+            </div>
           </div>
           <h4>Tap cleaner &amp; limescale remover</h4>
           <div class="rate"><b>★ 4.8</b> · 237 reviews</div>
@@ -45,7 +47,9 @@
         <article class="glass card rv rv-d1">
           <div class="shot">
             <span class="pill">Best seller</span>
-            <span class="pimg p-kitchen" role="img" aria-label="Foaming kitchen cleaner spray"></span>
+            <div style="height:122px;width:80px;display:flex;align-items:center;justify-content:center;">
+              {% render 'purelane-product-icon', handle: 'kitchen' %}
+            </div>
           </div>
           <h4>Kitchen cleaner, foaming</h4>
           <div class="rate"><b>★ 4.8</b> · 254 reviews</div>
@@ -56,7 +60,9 @@
         <article class="glass card rv rv-d2">
           <div class="shot">
             <span class="pill">Top rated</span>
-            <span class="pimg p-metal" role="img" aria-label="Copper, bronze and brass cleaner"></span>
+            <div style="height:122px;width:80px;display:flex;align-items:center;justify-content:center;">
+              {% render 'purelane-product-icon', handle: 'metal' %}
+            </div>
           </div>
           <h4>Copper, bronze &amp; brass cleaner</h4>
           <div class="rate"><b>★ 4.8</b> · 231 reviews</div>
@@ -67,7 +73,9 @@
         <article class="glass card rv rv-d3">
           <div class="shot">
             <span class="pill">New</span>
-            <span class="pimg p-wm" role="img" aria-label="Washing machine cleaner and descaler"></span>
+            <div style="height:122px;width:80px;display:flex;align-items:center;justify-content:center;">
+              {% render 'purelane-product-icon', handle: 'wm' %}
+            </div>
           </div>
           <h4>Washing machine cleaner &amp; descaler</h4>
           <div class="rate"><b>★ 4.8</b> · 183 reviews</div>

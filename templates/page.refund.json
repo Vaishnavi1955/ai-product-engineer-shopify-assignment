@@ -1,0 +1,95 @@
+{
+  "sections": {
+    "page_hero": {
+      "type": "purelane-page-hero",
+      "settings": {
+        "kicker": "Customer Care & Satisfaction",
+        "title": "Refund & Return Policy",
+        "breadcrumb_title": "Refunds & Returns",
+        "subheading": "Clear, customer-friendly return guidelines. If your order arrives damaged, defective, or incorrect, our support team will promptly assist you.",
+        "badge_text": "Hassle-Free Support"
+      }
+    },
+    "policy_content": {
+      "type": "purelane-policy",
+      "blocks": {
+        "hl_1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "recycle",
+            "title": "Clear Return Conditions",
+            "text": "Eligible return/replacement requests can be submitted within 15 days of delivery for damaged or defective items."
+          }
+        },
+        "hl_2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "shield",
+            "title": "Damaged / Wrong Items",
+            "text": "If an incorrect or leaking product arrives, we arrange a prompt replacement at zero additional shipping cost."
+          }
+        },
+        "hl_3": {
+          "type": "highlight",
+          "settings": {
+            "icon": "check",
+            "title": "Direct Refund Processing",
+            "text": "Approved refunds are credited back to your original payment method or UPI within 3–5 business days."
+          }
+        },
+        "clause_1": {
+          "type": "section_block",
+          "settings": {
+            "heading": "1. Return & Refund Eligibility",
+            "body": "We accept return and replacement requests within 15 days from the date of delivery for items that arrive damaged, defective, leaking, or different from what was ordered. To be eligible for a return, the product must have at least 80% of its original liquid volume remaining."
+          }
+        },
+        "clause_2": {
+          "type": "section_block",
+          "settings": {
+            "heading": "2. How to Request a Return or Replacement",
+            "body": "To initiate a request, please email our support team at <strong>support@purelane.com</strong> or message us on WhatsApp (+91 9930 123 234) with:<br>• Your Order ID (e.g. #PL-1042)<br>• A brief description of the issue<br>• Clear photos or a short video showing any damage, leakage, or incorrect labeling."
+          }
+        },
+        "clause_3": {
+          "type": "section_block",
+          "settings": {
+            "heading": "3. Damaged or Incorrect Product Handling",
+            "body": "Once our customer support team verifies the details, we will immediately initiate a free replacement order or issue a full refund according to your preference. In most damage cases, we do not require you to ship the broken or leaking bottle back."
+          }
+        },
+        "clause_4": {
+          "type": "section_block",
+          "settings": {
+            "heading": "4. Refund Timelines & Payment Methods",
+            "body": "• <strong>Prepaid Orders (Cards, Net Banking, UPI):</strong> Refunds are processed back to the original source bank/card within 3–5 business days.<br>• <strong>Cash on Delivery (COD) Orders:</strong> Refunds are transferred directly to your verified UPI ID or bank account within 24–48 hours of approval."
+          }
+        }
+      },
+      "block_order": [
+        "hl_1",
+        "hl_2",
+        "hl_3",
+        "clause_1",
+        "clause_2",
+        "clause_3",
+        "clause_4"
+      ],
+      "settings": {
+        "policy_kicker": "Returns & Replacements",
+        "policy_title": "Purelane Return Policy",
+        "last_updated": "August 2026",
+        "default_body": "We are dedicated to providing plant-powered homecare you can trust. If something isn't right with your delivery, our support specialists are here to resolve it."
+      }
+    },
+    "trust_bar": {
+      "type": "purelane-trust-bar",
+      "settings": {}
+    }
+  },
+  "order": [
+    "page_hero",
+    "policy_content",
+    "trust_bar"
+  ]
+}

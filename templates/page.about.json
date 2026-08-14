@@ -1,0 +1,100 @@
+{
+  "sections": {
+    "page_hero": {
+      "type": "purelane-page-hero",
+      "settings": {
+        "kicker": "Plant-Powered Homecare",
+        "title": "About Purelane",
+        "breadcrumb_title": "About Us",
+        "subheading": "Purelane is a plant-powered home cleaning brand dedicated to creating cleaner, fresher, and healthier homes with thoughtful, plant-derived solutions.",
+        "badge_text": "Safer Cleaning Solutions"
+      }
+    },
+    "about_story": {
+      "type": "purelane-about",
+      "blocks": {
+        "pillar_1": {
+          "type": "pillar",
+          "settings": {
+            "icon": "plant",
+            "title": "Plant-Derived Ingredients",
+            "text": "Cold-pressed coconut cleansers, citrus bio-enzymes, and soap nuts engineered for practical, effective everyday cleaning."
+          }
+        },
+        "pillar_2": {
+          "type": "pillar",
+          "settings": {
+            "icon": "shield",
+            "title": "Healthier & Safer Homes",
+            "text": "Tested non-toxic without harsh chemical residues, chlorine bleach, or artificial dyes, keeping children and pets safe."
+          }
+        },
+        "pillar_3": {
+          "type": "pillar",
+          "settings": {
+            "icon": "recycle",
+            "title": "Thoughtful Solutions",
+            "text": "Concentrated formulas, recyclable packaging, and multi-room bundles designed to reduce unnecessary household plastic."
+          }
+        }
+      },
+      "block_order": [
+        "pillar_1",
+        "pillar_2",
+        "pillar_3"
+      ],
+      "settings": {
+        "mission_kicker": "Our Story & Mission",
+        "mission_title": "Thoughtful cleaning powered by nature.",
+        "mission_paragraph_1": "Purelane is a plant-powered home cleaning brand founded on the belief that everyday cleaning products should be safe, effective, and free from toxic compromises. We engineer thoughtful cleaning solutions that deliver cleaner, fresher, and healthier living spaces for families across India.",
+        "mission_paragraph_2": "From tackling tough kitchen grease and bathroom limescale to gentle laundry care, our plant-derived formulas replace harsh fumes and synthetic irritants with hardworking bio-enzymes and natural botanical extracts. It is practical everyday cleaning made safer for your home, your loved ones, and the environment.",
+        "stat_1_val": "100%",
+        "stat_1_title": "Plant Derived",
+        "stat_1_desc": "Biodegradable active cleaners",
+        "stat_2_val": "0%",
+        "stat_2_title": "Harsh Chemicals",
+        "stat_2_desc": "No bleach, SLS, or parabens",
+        "stat_3_val": "4.8★",
+        "stat_3_title": "Customer Rating",
+        "stat_3_desc": "Verified customer reviews",
+        "stat_4_val": "100%",
+        "stat_4_title": "Recyclable",
+        "stat_4_desc": "Thoughtful packaging design",
+        "cta_kicker": "Ready to make the switch?",
+        "cta_title": "Experience clean that lasts without the toxins.",
+        "cta_subtitle": "Build your custom bundle today with any 3 formulas for just ₹499 with free shipping across India.",
+        "cta_btn_1_label": "Build Your Bundle",
+        "cta_btn_1_link": "/#bundles",
+        "cta_btn_2_label": "Explore All Products",
+        "cta_btn_2_link": "/collections/all"
+      }
+    },
+    "ingredients": {
+      "type": "purelane-ingredients",
+      "settings": {
+        "title": "Sourced from nature"
+      }
+    },
+    "trust_bar": {
+      "type": "purelane-trust-bar",
+      "settings": {}
+    },
+    "newsletter": {
+      "type": "purelane-newsletter",
+      "settings": {
+        "kicker": "Join the Purelane Club",
+        "title": "Get ₹100 off your first bundle",
+        "subtitle": "Plus first access to new launches and restocks.",
+        "placeholder": "your@email.com",
+        "button_label": "Get my ₹100 off"
+      }
+    }
+  },
+  "order": [
+    "page_hero",
+    "about_story",
+    "ingredients",
+    "trust_bar",
+    "newsletter"
+  ]
+}

@@ -1,0 +1,183 @@
+{% comment %}
+  Purelane Theme - Universal Policy & Information Page Section
+  Handles Shipping & Delivery, Returns & Refunds, Privacy Policy, Terms of Service
+{% endcomment %}
+{% comment %}theme-check-disable UndefinedObject{% endcomment %}
+
+{{ 'purelane-theme.css' | asset_url | stylesheet_tag }}
+
+<section class="sec policy-sec" id="policy-{{ section.id }}" data-scene="1">
+  <div class="wrap">
+
+    {% comment %} Policy Quick Nav Tabs {% endcomment %}
+    <div class="policy-nav-bar rv">
+      <a href="{{ shop.policies.shipping_policy.url | default: pages['shipping-delivery'].url | default: '/pages/shipping-delivery' }}" class="policy-nav-pill{% if page.handle contains 'shipping' %} active{% endif %}">
+        {% render 'purelane-svg-icons', icon: 'truck' %}
+        <span>Shipping &amp; Delivery</span>
+      </a>
+      <a href="{{ shop.policies.refund_policy.url | default: pages['refund-policy'].url | default: '/pages/refund-policy' }}" class="policy-nav-pill{% if page.handle contains 'refund' or page.handle contains 'return' %} active{% endif %}">
+        {% render 'purelane-svg-icons', icon: 'recycle' %}
+        <span>Refunds &amp; Returns</span>
+      </a>
+      <a href="{{ shop.policies.privacy_policy.url | default: pages['privacy-policy'].url | default: '/pages/privacy-policy' }}" class="policy-nav-pill{% if page.handle contains 'privacy' %} active{% endif %}">
+        {% render 'purelane-svg-icons', icon: 'shield' %}
+        <span>Privacy Policy</span>
+      </a>
+      <a href="{{ shop.policies.terms_of_service.url | default: pages['terms-of-service'].url | default: '/pages/terms-of-service' }}" class="policy-nav-pill{% if page.handle contains 'terms' %} active{% endif %}">
+        {% render 'purelane-svg-icons', icon: 'box-check' %}
+        <span>Terms of Service</span>
+      </a>
+      <a href="{{ pages['contact'].url | default: '/pages/contact' }}" class="policy-nav-pill{% if page.handle contains 'contact' %} active{% endif %}">
+        {% render 'purelane-svg-icons', icon: 'heart' %}
+        <span>Contact Support</span>
+      </a>
+    </div>
+
+    <div class="policy-layout">
+
+      {% comment %} Main Policy Content Card {% endcomment %}
+      <article class="glass policy-content-card rv">
+        <div class="policy-header">
+          <span class="kicker">{{ section.settings.policy_kicker | default: 'Legal & Information' }}</span>
+          <h2 class="d3" style="margin-top:8px;">{{ section.settings.policy_title | default: policy.title | default: page.title | default: 'Policy Details' }}</h2>
+          <div class="policy-meta">
+            <span>Last Updated: {{ section.settings.last_updated | default: 'August 2026' }}</span>
+            <span>&middot;</span>
+            <span>Official Policy of {{ shop.name }}</span>
+          </div>
+        </div>
+
+        {% comment %} Optional Highlights Grid {% endcomment %}
+        {% if section.blocks.size > 0 %}
+          <div class="policy-highlights-grid">
+            {% for block in section.blocks %}
+              {% if block.type == 'highlight' %}
+                <div class="glass-2 policy-highlight-item" {{ block.shopify_attributes }}>
+                  <div class="highlight-top">
+                    {% render 'purelane-svg-icons', icon: block.settings.icon %}
+                    <b>{{ block.settings.title }}</b>
+                  </div>
+                  <p>{{ block.settings.text }}</p>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        {% comment %} Policy Prose Content {% endcomment %}
+        <div class="policy-prose">
+          {% assign content_to_render = policy.body | default: page.content %}
+          {% if content_to_render != blank %}
+            {{ content_to_render }}
+          {% else %}
+            {% comment %} Structured Default Content when Shopify page is newly created {% endcomment %}
+            <h3>1. Overview &amp; Commitment</h3>
+            <p>At Purelane, we believe in complete transparency and customer delight. Every formula we ship is packaged with care using eco-friendly materials and dispatched via reputable tier-1 courier partners across India.</p>
+
+            <h3>2. Key Information &amp; Guidelines</h3>
+            <p>{{ section.settings.default_body | default: 'We strive to provide accurate tracking updates and rapid resolution for any delivery inquiries, order modifications, or quality concerns. Please review the specific terms outlined below or reach out to our customer care team.' }}</p>
+
+            {% for block in section.blocks %}
+              {% if block.type == 'section_block' %}
+                <div class="policy-clause" {{ block.shopify_attributes }}>
+                  <h4>{{ block.settings.heading }}</h4>
+                  <div class="clause-text">{{ block.settings.body }}</div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        </div>
+
+        {% comment %} Help Desk Card {% endcomment %}
+        <div class="glass-2 policy-help-box">
+          <div class="help-text">
+            <b>Have questions regarding this policy?</b>
+            <p style="margin:4px 0 0;font-size:13px;color:var(--paper-2);">
+              Our customer success team is available Monday through Saturday to assist you with any questions or claims.
+            </p>
+          </div>
+          <a href="{{ pages['contact'].url | default: '/pages/contact' }}" class="btn btn-primary btn-sm" style="flex-shrink:0;">
+            Contact Support
+            {% render 'purelane-svg-icons', icon: 'arrow-right' %}
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane Policy Page",
+  "tag": "section",
+  "class": "purelane-policy-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "policy_kicker",
+      "label": "Kicker / Category",
+      "default": "Legal & Information"
+    },
+    {
+      "type": "text",
+      "id": "policy_title",
+      "label": "Policy Title",
+      "default": "Policy & Details"
+    },
+    {
+      "type": "text",
+      "id": "last_updated",
+      "label": "Last Updated Date",
+      "default": "August 2026"
+    },
+    {
+      "type": "textarea",
+      "id": "default_body",
+      "label": "Default Body Summary",
+      "default": "We strive to provide accurate tracking updates and rapid resolution for any delivery inquiries, order modifications, or quality concerns."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "highlight",
+      "name": "Policy Highlight Box",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "truck", "label": "Truck / Shipping" },
+            { "value": "shield", "label": "Shield / Guarantee" },
+            { "value": "recycle", "label": "Recycle / Returns" },
+            { "value": "check", "label": "Checkmark" },
+            { "value": "plant", "label": "Plant" }
+          ],
+          "default": "check"
+        },
+        { "type": "text", "id": "title", "label": "Highlight Title", "default": "Free Shipping Across India" },
+        { "type": "textarea", "id": "text", "label": "Highlight Text", "default": "All orders qualify for 100% free delivery with zero minimum cart requirements." }
+      ]
+    },
+    {
+      "type": "section_block",
+      "name": "Policy Clause",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Clause Heading", "default": "Delivery Timelines" },
+        { "type": "textarea", "id": "body", "label": "Clause Text", "default": "Metros receive delivery in 2-4 business days. Rest of India typically arrives in 4-6 business days." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Policy Page",
+      "blocks": [
+        { "type": "highlight", "settings": { "icon": "truck", "title": "Free Shipping", "text": "Free express shipping on all orders across India." } },
+        { "type": "highlight", "settings": { "icon": "shield", "title": "Safe Transit", "text": "100% leak-proof, eco-friendly secured packaging." } },
+        { "type": "highlight", "settings": { "icon": "recycle", "title": "Hassle-Free Returns", "text": "15-day satisfaction guarantee on every formula." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

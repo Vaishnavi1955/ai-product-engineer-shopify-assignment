@@ -1,6 +1,7 @@
 {% comment %}
   Purelane Theme - Footer Section
   Visual Source of Truth: purelane-homepage.html lines 1518-1559
+  Modular Online Store 2.0 with dynamic menu blocks and legal links
 {% endcomment %}
 
 {{ 'purelane-theme.css' | asset_url | stylesheet_tag }}
@@ -8,9 +9,10 @@
 <footer class="purelane-footer" data-scene="4">
   <div class="wrap">
     <div class="fgrid">
+
       {% comment %} Brand Column {% endcomment %}
-      <div class="fcol">
-        <a class="brand" href="{{ routes.root_url }}" style="margin-bottom:16px">
+      <div class="fcol fcol-brand">
+        <a class="brand" href="{{ routes.root_url }}" style="margin-bottom:16px;">
           <span class="mark">
             {% render 'purelane-svg-icons', icon: 'leaf-mark' %}
           </span>
@@ -19,43 +21,74 @@
             <span class="n2">{{ section.settings.brand_subtitle | default: 'Clean, simply' }}</span>
           </span>
         </a>
-        <p style="max-width:30ch">
-          {{ section.settings.about_text | default: 'Effective cleaning, powered by nature. Made for Indian homes since day one.' }}
+        <p style="max-width:32ch;line-height:1.6;">
+          {{ section.settings.about_text | default: 'Effective cleaning, powered by nature. Formulated for Indian homes with cold-pressed botanical oils and bio-enzymes.' }}
         </p>
+        <div class="footer-badges" style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;">
+          <span class="glass-2 pill" style="font-size:10px;padding:3px 10px;">Plant Powered</span>
+          <span class="glass-2 pill" style="font-size:10px;padding:3px 10px;">Zero Harsh Toxins</span>
+          <span class="glass-2 pill" style="font-size:10px;padding:3px 10px;">Made in India</span>
+        </div>
       </div>
 
-      {% comment %} Shop Column {% endcomment %}
-      <div class="fcol">
-        <h5>Shop</h5>
-        <a href="#shop">Bestsellers</a>
-        <a href="#shop">Kitchen</a>
-        <a href="#shop">Laundry</a>
-        <a href="#shop">Home</a>
-        <a href="#shop">Skin</a>
-        <a href="#bundles">Starter kits</a>
-      </div>
+      {% comment %} Dynamic / Configurable Menu Columns {% endcomment %}
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          {% if block.type == 'menu' %}
+            <div class="fcol" {{ block.shopify_attributes }}>
+              <h5>{{ block.settings.title }}</h5>
+              {% if block.settings.menu != blank and block.settings.menu.links.size > 0 %}
+                {% for link in block.settings.menu.links %}
+                  <a href="{{ link.url }}">{{ link.title }}</a>
+                {% endfor %}
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        {% comment %} Default Structured Columns {% endcomment %}
+        <div class="fcol">
+          <h5>Shop</h5>
+          <a href="{{ routes.all_products_collection_url }}">All Products</a>
+          <a href="{% if template.name == 'index' %}#combos{% else %}{{ routes.root_url }}#combos{% endif %}">Best Selling Combos</a>
+          <a href="{% if template.name == 'index' %}#bundles{% else %}{{ routes.root_url }}#bundles{% endif %}">Custom Box Bundles</a>
+          <a href="{% if template.name == 'index' %}#shop{% else %}{{ routes.all_products_collection_url }}{% endif %}">Kitchen Cleaner</a>
+          <a href="{% if template.name == 'index' %}#shop{% else %}{{ routes.all_products_collection_url }}{% endif %}">Tap &amp; Limescale</a>
+          <a href="{% if template.name == 'index' %}#shop{% else %}{{ routes.all_products_collection_url }}{% endif %}">Laundry Detergent</a>
+        </div>
 
-      {% comment %} About Column {% endcomment %}
-      <div class="fcol">
-        <h5>About</h5>
-        <a href="#how">How it works</a>
-        <a href="#ingredients">Sustainability</a>
-        <a href="#proof">FAQs</a>
-        <a href="#reviews">Reviews</a>
-      </div>
+        <div class="fcol">
+          <h5>Customer Support</h5>
+          <a href="{{ pages['contact'].url | default: '/pages/contact' }}">Contact Us</a>
+          <a href="{{ shop.policies.shipping_policy.url | default: pages['shipping-delivery'].url | default: '/pages/shipping-delivery' }}">Shipping &amp; Delivery</a>
+          <a href="{{ shop.policies.refund_policy.url | default: pages['refund-policy'].url | default: '/pages/refund-policy' }}">Refund &amp; Returns</a>
+          <a href="{{ pages['about-us'].url | default: '/pages/about-us' }}">About Us</a>
+          <a href="{% if template.name == 'index' %}#ingredients{% else %}{{ routes.root_url }}#ingredients{% endif %}">Plant Ingredients</a>
+          <a href="{% if template.name == 'index' %}#proof{% else %}{{ routes.root_url }}#proof{% endif %}">Why It Works</a>
+        </div>
 
-      {% comment %} Contact Column {% endcomment %}
-      <div class="fcol">
-        <h5>Get in touch</h5>
-        <a href="mailto:{{ section.settings.email | default: 'hello@purelane.com' }}">{{ section.settings.email | default: 'hello@purelane.com' }}</a>
-        <a href="tel:{{ section.settings.phone | default: '+919930123234' }}">{{ section.settings.phone_display | default: '+91 9930 123 234' }}</a>
-        <p style="font-size:12px;color:rgba(36,26,61,.5)">{{ section.settings.company_name | default: 'Purelane Eco Products Pvt Ltd' }}</p>
-      </div>
+        <div class="fcol">
+          <h5>Get in Touch</h5>
+          <a href="{{ pages['contact'].url | default: '/pages/contact' }}">Product &amp; Order Support</a>
+          <a href="mailto:{{ section.settings.email | default: shop.email | default: 'support@purelane.com' }}">{{ section.settings.email | default: shop.email | default: 'support@purelane.com' }}</a>
+          <a href="tel:{{ section.settings.phone | default: '+919930123234' }}">{{ section.settings.phone_display | default: '+91 9930 123 234' }}</a>
+          <p style="font-size:12px;color:rgba(36,26,61,.5);margin-top:6px;">Mon - Sat: 9:30 AM to 6:30 PM IST</p>
+          <p style="font-size:11.5px;color:rgba(36,26,61,.45);margin-top:2px;">{{ section.settings.company_name | default: shop.name | default: 'Purelane Eco Products Pvt Ltd' }}</p>
+        </div>
+      {% endif %}
+
     </div>
 
+    {% comment %} Footer Bottom Bar {% endcomment %}
     <div class="fbot">
-      <span>© {{ 'now' | date: '%Y' }} {{ section.settings.copyright_text | default: 'Purelane Eco Products Private Limited' }}</span>
-      <span>Privacy &middot; Terms &middot; Refunds &middot; Contact</span>
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ section.settings.copyright_text | default: shop.name | default: 'Purelane' }}. All rights reserved.</span>
+      <div class="fbot-links" style="display:flex;gap:14px;flex-wrap:wrap;">
+        <a href="{{ shop.policies.privacy_policy.url | default: pages['privacy-policy'].url | default: '/pages/privacy-policy' }}">Privacy Policy</a>
+        <a href="{{ shop.policies.terms_of_service.url | default: pages['terms-of-service'].url | default: '/pages/terms-of-service' }}">Terms of Service</a>
+        <a href="{{ shop.policies.shipping_policy.url | default: pages['shipping-delivery'].url | default: '/pages/shipping-delivery' }}">Shipping &amp; Delivery</a>
+        <a href="{{ shop.policies.refund_policy.url | default: pages['refund-policy'].url | default: '/pages/refund-policy' }}">Refund &amp; Returns</a>
+        <a href="{{ pages['contact'].url | default: '/pages/contact' }}">Contact Us</a>
+      </div>
     </div>
   </div>
 </footer>
@@ -66,14 +99,32 @@
   "tag": "section",
   "class": "purelane-footer-section",
   "settings": [
+    {
+      "type": "header",
+      "content": "Brand Info"
+    },
     { "type": "text", "id": "brand_title", "label": "Brand Title", "default": "Purelane" },
     { "type": "text", "id": "brand_subtitle", "label": "Brand Subtitle", "default": "Clean, simply" },
-    { "type": "textarea", "id": "about_text", "label": "About Copy", "default": "Effective cleaning, powered by nature. Made for Indian homes since day one." },
+    { "type": "textarea", "id": "about_text", "label": "About Copy", "default": "Effective cleaning, powered by nature. Formulated for Indian homes with cold-pressed botanical oils and bio-enzymes." },
+    {
+      "type": "header",
+      "content": "Contact Info"
+    },
     { "type": "text", "id": "email", "label": "Contact Email", "default": "hello@purelane.com" },
     { "type": "text", "id": "phone", "label": "Contact Phone Link", "default": "+919930123234" },
     { "type": "text", "id": "phone_display", "label": "Contact Phone Display", "default": "+91 9930 123 234" },
     { "type": "text", "id": "company_name", "label": "Company Legal Name", "default": "Purelane Eco Products Pvt Ltd" },
     { "type": "text", "id": "copyright_text", "label": "Copyright Text", "default": "Purelane Eco Products Private Limited" }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Footer Menu Column",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Column Heading", "default": "Quick Links" },
+        { "type": "link_list", "id": "menu", "label": "Navigation Menu" }
+      ]
+    }
   ],
   "presets": [
     { "name": "Purelane Footer" }

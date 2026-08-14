@@ -32,30 +32,41 @@
       <span class="pill">{{ save_pct }}% off</span>
     {% endif %}
 
-    <a href="{{ product.url | default: '#shop' }}" class="pimg-link" aria-label="{{ title | escape }}">
+    <a href="{{ product.url | default: '#shop' }}" class="pimg-link" aria-label="{{ title | escape }}" style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;">
       {% if featured_img %}
-        <img
-          src="{{ featured_img | image_url: width: 300 }}"
-          srcset="{{ featured_img | image_url: width: 150 }} 150w, {{ featured_img | image_url: width: 300 }} 300w, {{ featured_img | image_url: width: 450 }} 450w"
-          sizes="(max-width: 600px) 150px, 300px"
-          alt="{{ featured_img.alt | default: title | escape }}"
-          loading="lazy"
-          width="150"
-          height="200"
-          class="purelane-card-image"
-        >
+        {{
+          featured_img
+          | image_url: width: 400
+          | image_tag:
+            loading: 'lazy',
+            widths: '150, 300, 400',
+            sizes: '(max-width: 600px) 150px, 300px',
+            class: 'purelane-card-image',
+            style: 'max-height:122px;width:auto;object-fit:contain;'
+        }}
       {% else %}
-        {% comment %} Fallback SVG when image is missing {% endcomment %}
-        <svg viewBox="0 0 130 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="{{ title | escape }}">
-          <ellipse cx="65" cy="190" rx="40" ry="7" fill="#01201c" opacity=".5"/>
-          <path d="M40 60V48c0-7 5-12 12-12h13c8 0 13 6 13 13v11Z" fill="#7d938c"/>
-          <rect x="38" y="56" width="42" height="7" rx="3" fill="#a8bdb2"/>
-          <rect x="41" y="62" width="36" height="16" rx="4" fill="#04756e"/>
-          <path d="M28 96c0-11 6-18 15-24v-8h33v8c9 6 15 13 15 24v62c0 12-8 20-21 20H49c-13 0-21-8-21-20Z" fill="rgba(255,255,255,.3)" stroke="rgba(255,255,255,.4)" stroke-width="1.4"/>
-          <rect x="31" y="112" width="66" height="60" rx="6" fill="#4b3a8f"/>
-          <text x="64" y="140" text-anchor="middle" font-family="Outfit, sans-serif" font-size="8.6" font-weight="800" fill="#faf7fd">PURELANE</text>
-          <text x="64" y="156" text-anchor="middle" font-family="Inter, sans-serif" font-size="6" font-weight="700" fill="#ece6f7">BOTANICAL</text>
-        </svg>
+        <div style="height:122px;width:80px;display:flex;align-items:center;justify-content:center;">
+          {% assign p_handle = product.handle | default: 'tap' %}
+          {% if p_handle contains 'kitchen' %}
+            {% render 'purelane-product-icon', handle: 'kitchen' %}
+          {% elsif p_handle contains 'dish' %}
+            {% render 'purelane-product-icon', handle: 'dish' %}
+          {% elsif p_handle contains 'laundry' %}
+            {% render 'purelane-product-icon', handle: 'laundry' %}
+          {% elsif p_handle contains 'floor' %}
+            {% render 'purelane-product-icon', handle: 'floor' %}
+          {% elsif p_handle contains 'toilet' %}
+            {% render 'purelane-product-icon', handle: 'toilet' %}
+          {% elsif p_handle contains 'handwash' %}
+            {% render 'purelane-product-icon', handle: 'handwash' %}
+          {% elsif p_handle contains 'metal' or p_handle contains 'copper' or p_handle contains 'brass' %}
+            {% render 'purelane-product-icon', handle: 'metal' %}
+          {% elsif p_handle contains 'machine' or p_handle contains 'wm' %}
+            {% render 'purelane-product-icon', handle: 'wm' %}
+          {% else %}
+            {% render 'purelane-product-icon', handle: 'tap' %}
+          {% endif %}
+        </div>
       {% endif %}
     </a>
   </div>
@@ -79,7 +90,7 @@
   </div>
 
   {% if is_available %}
-    <form method="post" action="/cart/add" class="purelane-cart-form">
+    <form method="post" action="{{ routes.cart_add_url }}" class="purelane-cart-form">
       <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id | default: 1 }}">
       <button type="submit" class="btn btn-ghost btn-sm">Add to cart</button>
     </form>

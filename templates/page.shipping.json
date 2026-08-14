@@ -1,0 +1,95 @@
+{
+  "sections": {
+    "page_hero": {
+      "type": "purelane-page-hero",
+      "settings": {
+        "kicker": "Shipping & Delivery Policy",
+        "title": "Shipping & Delivery",
+        "breadcrumb_title": "Shipping",
+        "subheading": "Orders processed within 1–2 business days. Typical delivery in 3–7 business days across India with real-time tracking updates.",
+        "badge_text": "Dispatches in 1–2 Days"
+      }
+    },
+    "policy_content": {
+      "type": "purelane-policy",
+      "blocks": {
+        "hl_1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "check",
+            "title": "1–2 Day Processing",
+            "text": "All orders are verified, securely packed, and dispatched within 1–2 business days from our fulfillment center."
+          }
+        },
+        "hl_2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "truck",
+            "title": "3–7 Day Delivery",
+            "text": "Typical delivery takes 3–7 business days depending on location and regional courier network accessibility."
+          }
+        },
+        "hl_3": {
+          "type": "highlight",
+          "settings": {
+            "icon": "shield",
+            "title": "Transparent Shipping",
+            "text": "Shipping charges, special promotions, and free delivery thresholds are calculated and shown clearly at checkout."
+          }
+        },
+        "clause_1": {
+          "type": "section_block",
+          "settings": {
+            "heading": "1. Order Processing & Dispatch",
+            "body": "Orders are processed and prepared for dispatch within 1–2 business days (Monday through Saturday, excluding national holidays). Once your package is handed over to our courier partner, you will receive an automated shipping confirmation with a live tracking link."
+          }
+        },
+        "clause_2": {
+          "type": "section_block",
+          "settings": {
+            "heading": "2. Delivery Timelines by Region",
+            "body": "• Metro Cities (Mumbai, Delhi NCR, Bengaluru, Hyderabad, Chennai, Kolkata, Pune): 2–4 business days.<br>• Tier 2 and Tier 3 Cities: 3–5 business days.<br>• Remote and Regional Locations: 5–7 business days."
+          }
+        },
+        "clause_3": {
+          "type": "section_block",
+          "settings": {
+            "heading": "3. Shipping Charges & Tracking",
+            "body": "Applicable shipping fees are clearly displayed at checkout before you complete payment. Free shipping is provided on all multi-item bundle orders. Customers receive regular SMS and email notifications regarding order status and transit milestones."
+          }
+        },
+        "clause_4": {
+          "type": "section_block",
+          "settings": {
+            "heading": "4. Damaged or Delayed Shipments",
+            "body": "If your order has not arrived within the estimated 3–7 business day window, or if a package arrives damaged in transit, please contact our support team at support@purelane.com or via WhatsApp (+91 9930 123 234) with your order number for swift resolution."
+          }
+        }
+      },
+      "block_order": [
+        "hl_1",
+        "hl_2",
+        "hl_3",
+        "clause_1",
+        "clause_2",
+        "clause_3",
+        "clause_4"
+      ],
+      "settings": {
+        "policy_kicker": "Customer Delivery Policy",
+        "policy_title": "Purelane Shipping Guidelines",
+        "last_updated": "August 2026",
+        "default_body": "We partner with leading tier-1 express logistics providers across India to ensure safe, spill-proof delivery of your homecare essentials."
+      }
+    },
+    "trust_bar": {
+      "type": "purelane-trust-bar",
+      "settings": {}
+    }
+  },
+  "order": [
+    "page_hero",
+    "policy_content",
+    "trust_bar"
+  ]
+}

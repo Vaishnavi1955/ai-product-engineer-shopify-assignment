@@ -33,27 +33,57 @@
             <div class="stack">
               <span class="it">
                 {% if block.settings.image_1 %}
-                  <img src="{{ block.settings.image_1 | image_url: width: 120 }}" alt="{{ block.settings.item_1_label | escape }}">
+                  {{
+                    block.settings.image_1
+                    | image_url: width: 140
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '70, 140',
+                      sizes: '70px',
+                      style: 'height:66px;width:auto;object-fit:contain;'
+                  }}
                 {% else %}
-                  <span class="pimg {{ block.settings.item_1_class | default: 'p-kitchen' }}" role="img"></span>
+                  <div style="height:66px;width:50px;display:flex;align-items:center;justify-content:center;">
+                    {% render 'purelane-product-icon', handle: block.settings.item_1_class %}
+                  </div>
                 {% endif %}
                 <span>{{ block.settings.item_1_label | default: 'Cuts grease' }}</span>
               </span>
               <span class="plus" aria-hidden="true">+</span>
               <span class="it">
                 {% if block.settings.image_2 %}
-                  <img src="{{ block.settings.image_2 | image_url: width: 120 }}" alt="{{ block.settings.item_2_label | escape }}">
+                  {{
+                    block.settings.image_2
+                    | image_url: width: 140
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '70, 140',
+                      sizes: '70px',
+                      style: 'height:66px;width:auto;object-fit:contain;'
+                  }}
                 {% else %}
-                  <span class="pimg {{ block.settings.item_2_class | default: 'p-dish' }}" role="img"></span>
+                  <div style="height:66px;width:50px;display:flex;align-items:center;justify-content:center;">
+                    {% render 'purelane-product-icon', handle: block.settings.item_2_class %}
+                  </div>
                 {% endif %}
                 <span>{{ block.settings.item_2_label | default: 'Clean dishes' }}</span>
               </span>
               <span class="plus" aria-hidden="true">+</span>
               <span class="it">
                 {% if block.settings.image_3 %}
-                  <img src="{{ block.settings.image_3 | image_url: width: 120 }}" alt="{{ block.settings.item_3_label | escape }}">
+                  {{
+                    block.settings.image_3
+                    | image_url: width: 140
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '70, 140',
+                      sizes: '70px',
+                      style: 'height:66px;width:auto;object-fit:contain;'
+                  }}
                 {% else %}
-                  <span class="pimg {{ block.settings.item_3_class | default: 'p-tap' }}" role="img"></span>
+                  <div style="height:66px;width:50px;display:flex;align-items:center;justify-content:center;">
+                    {% render 'purelane-product-icon', handle: block.settings.item_3_class %}
+                  </div>
                 {% endif %}
                 <span>{{ block.settings.item_3_label | default: 'Melts stains' }}</span>
               </span>
@@ -86,11 +116,11 @@
             <span class="save">You save ₹398</span>
             <span class="flag">Most popular</span>
             <div class="stack">
-              <span class="it"><span class="pimg p-kitchen" role="img"></span><span>Cuts grease instantly</span></span>
+              <span class="it"><div style="height:66px;width:50px;display:flex;align-items:center;justify-content:center;">{% render 'purelane-product-icon', handle: 'kitchen' %}</div><span>Cuts grease instantly</span></span>
               <span class="plus" aria-hidden="true">+</span>
-              <span class="it"><span class="pimg p-dish" role="img"></span><span>Squeaky clean dishes</span></span>
+              <span class="it"><div style="height:66px;width:50px;display:flex;align-items:center;justify-content:center;">{% render 'purelane-product-icon', handle: 'dish' %}</div><span>Squeaky clean dishes</span></span>
               <span class="plus" aria-hidden="true">+</span>
-              <span class="it"><span class="pimg p-tap" role="img"></span><span>Melts hard water stains</span></span>
+              <span class="it"><div style="height:66px;width:50px;display:flex;align-items:center;justify-content:center;">{% render 'purelane-product-icon', handle: 'tap' %}</div><span>Melts hard water stains</span></span>
             </div>
           </div>
           <div class="body">
@@ -107,11 +137,11 @@
           <div class="tray">
             <span class="save">You save ₹448</span>
             <div class="stack">
-              <span class="it"><span class="pimg p-laundry" role="img"></span><span>Removes tough stains</span></span>
+              <span class="it"><div style="height:66px;width:50px;display:flex;align-items:center;justify-content:center;">{% render 'purelane-product-icon', handle: 'laundry' %}</div><span>Removes tough stains</span></span>
               <span class="plus" aria-hidden="true">+</span>
               <span class="it"><span class="tile">{% render 'purelane-svg-icons', icon: 'plant' %}</span><span>Softens every wash</span></span>
               <span class="plus" aria-hidden="true">+</span>
-              <span class="it"><span class="pimg p-wm" role="img"></span><span>Cleans machine</span></span>
+              <span class="it"><div style="height:66px;width:50px;display:flex;align-items:center;justify-content:center;">{% render 'purelane-product-icon', handle: 'wm' %}</div><span>Cleans machine</span></span>
             </div>
           </div>
           <div class="body">
@@ -129,11 +159,11 @@
             <span class="save">Biggest saving</span>
             <span class="flag">Best value</span>
             <div class="stack">
-              <span class="it"><span class="pimg p-kitchen" role="img"></span><span>Cuts grease</span></span>
+              <span class="it"><div style="height:66px;width:50px;display:flex;align-items:center;justify-content:center;">{% render 'purelane-product-icon', handle: 'kitchen' %}</div><span>Cuts grease</span></span>
               <span class="plus" aria-hidden="true">+</span>
-              <span class="it"><span class="pimg p-floor" role="img"></span><span>Kills 99.9% germs</span></span>
+              <span class="it"><div style="height:66px;width:50px;display:flex;align-items:center;justify-content:center;">{% render 'purelane-product-icon', handle: 'floor' %}</div><span>Kills 99.9% germs</span></span>
               <span class="plus" aria-hidden="true">+</span>
-              <span class="it"><span class="pimg p-handwash" role="img"></span><span>Hydrating handwash</span></span>
+              <span class="it"><div style="height:66px;width:50px;display:flex;align-items:center;justify-content:center;">{% render 'purelane-product-icon', handle: 'handwash' %}</div><span>Hydrating handwash</span></span>
             </div>
           </div>
           <div class="body">
@@ -150,11 +180,11 @@
           <div class="tray">
             <span class="save">You save ₹398</span>
             <div class="stack">
-              <span class="it"><span class="pimg p-toilet" role="img"></span><span>Kills 99.9% germs</span></span>
+              <span class="it"><div style="height:66px;width:50px;display:flex;align-items:center;justify-content:center;">{% render 'purelane-product-icon', handle: 'toilet' %}</div><span>Kills 99.9% germs</span></span>
               <span class="plus" aria-hidden="true">+</span>
-              <span class="it"><span class="pimg p-tap" role="img"></span><span>Melts limescale</span></span>
+              <span class="it"><div style="height:66px;width:50px;display:flex;align-items:center;justify-content:center;">{% render 'purelane-product-icon', handle: 'tap' %}</div><span>Melts limescale</span></span>
               <span class="plus" aria-hidden="true">+</span>
-              <span class="it"><span class="pimg p-eraser" role="img"></span><span>Scrubs soap scum</span></span>
+              <span class="it"><div style="height:66px;width:50px;display:flex;align-items:center;justify-content:center;">{% render 'purelane-product-icon', handle: 'eraser' %}</div><span>Scrubs soap scum</span></span>
             </div>
           </div>
           <div class="body">

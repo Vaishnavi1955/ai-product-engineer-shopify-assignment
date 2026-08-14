@@ -20,16 +20,41 @@
 
       <div class="stripwrap">
         <div class="rangerow">
-          <span class="pimg p-floor" role="img" aria-label="Purelane floor cleaner"></span>
-          <span class="pimg p-tap" role="img" aria-label="Purelane tap cleaner"></span>
-          <span class="pimg p-kitchen" role="img" aria-label="Purelane kitchen cleaner"></span>
-          <span class="pimg p-toilet" role="img" aria-label="Purelane toilet cleaner"></span>
-          <span class="pimg p-laundry" role="img" aria-label="Purelane laundry detergent"></span>
-          <span class="pimg p-dish" role="img" aria-label="Purelane dishwash gel"></span>
-          <span class="pimg p-metal" role="img" aria-label="Purelane copper cleaner"></span>
-          <span class="pimg p-wm" role="img" aria-label="Purelane washing machine cleaner"></span>
-          <span class="pimg p-handwash" role="img" aria-label="Purelane liquid handwash"></span>
-          <span class="pimg p-eraser" role="img" aria-label="Purelane magic eraser"></span>
+          {% assign collection = section.settings.collection | default: collections['all'] %}
+          {% if collection and collection.products.size > 0 %}
+            {% for product in collection.products limit: 12 %}
+              <a href="{{ product.url }}" class="rangerow-link" aria-label="{{ product.title | escape }}" style="display:inline-flex;align-items:center;flex-shrink:0;">
+                {% if product.featured_image %}
+                  {{
+                    product.featured_image
+                    | image_url: width: 240
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '120, 240',
+                      sizes: '120px',
+                      alt: product.featured_image.alt | default: product.title | escape,
+                      style: 'height:116px;width:auto;object-fit:contain;'
+                  }}
+                {% else %}
+                  <div style="height:116px;width:70px;display:flex;align-items:flex-end;justify-content:center;">
+                    {% assign p_handle = product.handle | default: 'floor' %}
+                    {% render 'purelane-product-icon', handle: p_handle %}
+                  </div>
+                {% endif %}
+              </a>
+            {% endfor %}
+          {% else %}
+            <div style="height:116px;width:70px;display:flex;align-items:flex-end;justify-content:center;">{% render 'purelane-product-icon', handle: 'floor' %}</div>
+            <div style="height:116px;width:70px;display:flex;align-items:flex-end;justify-content:center;">{% render 'purelane-product-icon', handle: 'tap' %}</div>
+            <div style="height:116px;width:70px;display:flex;align-items:flex-end;justify-content:center;">{% render 'purelane-product-icon', handle: 'kitchen' %}</div>
+            <div style="height:116px;width:70px;display:flex;align-items:flex-end;justify-content:center;">{% render 'purelane-product-icon', handle: 'toilet' %}</div>
+            <div style="height:116px;width:70px;display:flex;align-items:flex-end;justify-content:center;">{% render 'purelane-product-icon', handle: 'laundry' %}</div>
+            <div style="height:116px;width:70px;display:flex;align-items:flex-end;justify-content:center;">{% render 'purelane-product-icon', handle: 'dish' %}</div>
+            <div style="height:116px;width:70px;display:flex;align-items:flex-end;justify-content:center;">{% render 'purelane-product-icon', handle: 'metal' %}</div>
+            <div style="height:116px;width:70px;display:flex;align-items:flex-end;justify-content:center;">{% render 'purelane-product-icon', handle: 'wm' %}</div>
+            <div style="height:116px;width:70px;display:flex;align-items:flex-end;justify-content:center;">{% render 'purelane-product-icon', handle: 'handwash' %}</div>
+            <div style="height:116px;width:70px;display:flex;align-items:flex-end;justify-content:center;">{% render 'purelane-product-icon', handle: 'eraser' %}</div>
+          {% endif %}
         </div>
       </div>
       <p class="striphint">Swipe to see the full shelf</p>
@@ -45,7 +70,8 @@
   "settings": [
     { "type": "text", "id": "kicker", "label": "Kicker", "default": "The full range" },
     { "type": "text", "id": "title", "label": "Heading", "default": "Every room, one shelf" },
-    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Floors, taps, kitchen, laundry, bathroom and hands. Fourteen plant-based formulas." }
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Floors, taps, kitchen, laundry, bathroom and hands. Fourteen plant-based formulas that replace every harsh bottle under your sink." },
+    { "type": "collection", "id": "collection", "label": "Collection (Optional)" }
   ],
   "presets": [
     { "name": "Purelane Full Range" }

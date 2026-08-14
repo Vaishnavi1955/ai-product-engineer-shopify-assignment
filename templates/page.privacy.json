@@ -1,0 +1,78 @@
+{
+  "sections": {
+    "page_hero": {
+      "type": "purelane-page-hero",
+      "settings": {
+        "kicker": "Customer Data & Privacy",
+        "title": "Privacy Policy",
+        "breadcrumb_title": "Privacy",
+        "subheading": "How we handle your personal information, order data, and store privacy when you shop on Purelane.",
+        "badge_text": "Privacy & Security"
+      }
+    },
+    "policy_content": {
+      "type": "purelane-policy",
+      "blocks": {
+        "hl_1": {
+          "type": "highlight",
+          "settings": {
+            "icon": "shield",
+            "title": "Personal Data Protection",
+            "text": "Your contact and delivery details are used solely to process orders, deliver shipments, and provide support."
+          }
+        },
+        "hl_2": {
+          "type": "highlight",
+          "settings": {
+            "icon": "check",
+            "title": "Secure Checkout",
+            "text": "All transactions are securely encrypted and processed through authorized payment gateway partners."
+          }
+        },
+        "clause_1": {
+          "type": "section_block",
+          "settings": {
+            "heading": "1. Information We Collect",
+            "body": "When you purchase or browse Purelane, we collect necessary order details (Name, Shipping Address, Email Address, Phone Number) strictly to fulfill deliveries, provide order updates, and offer customer support."
+          }
+        },
+        "clause_2": {
+          "type": "section_block",
+          "settings": {
+            "heading": "2. Cookies & Analytics",
+            "body": "We use basic functional cookies to maintain your shopping bag across sessions and analyze aggregated site performance to improve store navigation and speed."
+          }
+        },
+        "clause_3": {
+          "type": "section_block",
+          "settings": {
+            "heading": "3. Your Rights & Data Requests",
+            "body": "You may request access to, correction of, or deletion of your personal data at any time by emailing our customer support team at support@purelane.com."
+          }
+        }
+      },
+      "block_order": [
+        "hl_1",
+        "hl_2",
+        "clause_1",
+        "clause_2",
+        "clause_3"
+      ],
+      "settings": {
+        "policy_kicker": "Privacy Guidelines",
+        "policy_title": "Customer Privacy Policy",
+        "last_updated": "August 2026",
+        "default_body": "Purelane is committed to respecting your privacy and protecting the security of your personal data."
+      }
+    },
+    "trust_bar": {
+      "type": "purelane-trust-bar",
+      "settings": {}
+    }
+  },
+  "order": [
+    "page_hero",
+    "policy_content",
+    "trust_bar"
+  ]
+}

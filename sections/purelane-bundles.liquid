@@ -24,21 +24,31 @@
             <span class="tag">{{ block.settings.tag_text }}</span>
           {% endif %}
 
-          <div class="tierpix{% if block.settings.item_count >= 5 %} five{% endif %}" aria-hidden="true">
+          <div class="tierpix{% if block.settings.item_count >= 5 %} five{% endif %}" aria-hidden="true" style="display:flex;align-items:flex-end;justify-content:center;gap:4px;">
             {% if block.settings.thumb_1 != blank %}
-              <span class="pimg {{ block.settings.thumb_1 }}"></span>
+              <div style="height:64px;display:inline-flex;align-items:flex-end;">
+                {% render 'purelane-product-icon', handle: block.settings.thumb_1 %}
+              </div>
             {% endif %}
             {% if block.settings.thumb_2 != blank %}
-              <span class="pimg {{ block.settings.thumb_2 }}"></span>
+              <div style="height:64px;display:inline-flex;align-items:flex-end;">
+                {% render 'purelane-product-icon', handle: block.settings.thumb_2 %}
+              </div>
             {% endif %}
             {% if block.settings.thumb_3 != blank %}
-              <span class="pimg {{ block.settings.thumb_3 }}"></span>
+              <div style="height:64px;display:inline-flex;align-items:flex-end;">
+                {% render 'purelane-product-icon', handle: block.settings.thumb_3 %}
+              </div>
             {% endif %}
             {% if block.settings.thumb_4 != blank %}
-              <span class="pimg {{ block.settings.thumb_4 }}"></span>
+              <div style="height:64px;display:inline-flex;align-items:flex-end;">
+                {% render 'purelane-product-icon', handle: block.settings.thumb_4 %}
+              </div>
             {% endif %}
             {% if block.settings.thumb_5 != blank %}
-              <span class="pimg {{ block.settings.thumb_5 }}"></span>
+              <div style="height:64px;display:inline-flex;align-items:flex-end;">
+                {% render 'purelane-product-icon', handle: block.settings.thumb_5 %}
+              </div>
             {% endif %}
           </div>
 
@@ -81,8 +91,8 @@
         {% comment %} Default Preset Tiers Matching Reference HTML {% endcomment %}
         <article class="glass tier rv">
           <span class="tag">Starter</span>
-          <div class="tierpix" aria-hidden="true">
-            <span class="pimg p-combo2" role="img"></span>
+          <div class="tierpix" aria-hidden="true" style="display:flex;align-items:flex-end;justify-content:center;gap:4px;">
+            <div style="height:64px;display:inline-flex;align-items:flex-end;">{% render 'purelane-product-icon', handle: 'combo2' %}</div>
           </div>
           <div class="qty">2<small>Products</small></div>
           <div class="price">₹349 <s>₹598</s></div>
@@ -96,10 +106,10 @@
 
         <article class="glass tier best rv rv-d2">
           <span class="tag">Most popular</span>
-          <div class="tierpix" aria-hidden="true">
-            <span class="pimg p-kitchen"></span>
-            <span class="pimg p-tap"></span>
-            <span class="pimg p-dish"></span>
+          <div class="tierpix" aria-hidden="true" style="display:flex;align-items:flex-end;justify-content:center;gap:4px;">
+            <div style="height:64px;display:inline-flex;align-items:flex-end;">{% render 'purelane-product-icon', handle: 'kitchen' %}</div>
+            <div style="height:64px;display:inline-flex;align-items:flex-end;">{% render 'purelane-product-icon', handle: 'tap' %}</div>
+            <div style="height:64px;display:inline-flex;align-items:flex-end;">{% render 'purelane-product-icon', handle: 'dish' %}</div>
           </div>
           <div class="qty">3<small>Products</small></div>
           <div class="price">₹499 <s>₹897</s></div>
@@ -114,12 +124,12 @@
 
         <article class="glass tier rv rv-d3">
           <span class="tag">Whole home</span>
-          <div class="tierpix five" aria-hidden="true">
-            <span class="pimg p-kitchen"></span>
-            <span class="pimg p-tap"></span>
-            <span class="pimg p-floor"></span>
-            <span class="pimg p-toilet"></span>
-            <span class="pimg p-laundry"></span>
+          <div class="tierpix five" aria-hidden="true" style="display:flex;align-items:flex-end;justify-content:center;gap:4px;">
+            <div style="height:64px;display:inline-flex;align-items:flex-end;">{% render 'purelane-product-icon', handle: 'kitchen' %}</div>
+            <div style="height:64px;display:inline-flex;align-items:flex-end;">{% render 'purelane-product-icon', handle: 'tap' %}</div>
+            <div style="height:64px;display:inline-flex;align-items:flex-end;">{% render 'purelane-product-icon', handle: 'floor' %}</div>
+            <div style="height:64px;display:inline-flex;align-items:flex-end;">{% render 'purelane-product-icon', handle: 'toilet' %}</div>
+            <div style="height:64px;display:inline-flex;align-items:flex-end;">{% render 'purelane-product-icon', handle: 'laundry' %}</div>
           </div>
           <div class="qty">5<small>Products</small></div>
           <div class="price">₹799 <s>₹1495</s></div>

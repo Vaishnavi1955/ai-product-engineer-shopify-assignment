@@ -100,35 +100,98 @@
         {% comment %} Slide 1: 1 Product {% endcomment %}
         <div class="hslide hs1 on" data-n="1">
           {% assign hero_p1 = section.settings.product_1 %}
+          {% if hero_p1 == blank and collections['all'].products.size > 0 %}
+            {% assign hero_p1 = collections['all'].products[0] %}
+          {% endif %}
+
           {% if hero_p1 and hero_p1.featured_image %}
-            <img src="{{ hero_p1.featured_image | image_url: width: 400 }}" alt="{{ hero_p1.title | escape }}" class="hp a d1 pimg" style="height:100%;object-fit:contain;">
+            <img
+              src="{{ hero_p1.featured_image | image_url: width: 400 }}"
+              srcset="{{ hero_p1.featured_image | image_url: width: 200 }} 200w, {{ hero_p1.featured_image | image_url: width: 400 }} 400w, {{ hero_p1.featured_image | image_url: width: 600 }} 600w"
+              sizes="(max-width: 600px) 200px, 400px"
+              alt="{{ hero_p1.featured_image.alt | default: hero_p1.title | escape }}"
+              class="hp a d1 pimg"
+              width="400"
+              height="600"
+              style="height:100%;object-fit:contain;"
+              loading="eager"
+            >
           {% else %}
-            <span class="hp p-kbtl a d1" role="img" aria-label="Purelane foaming kitchen cleaner spray bottle"></span>
+            <div class="hp a d1 pimg" style="height:100%;display:flex;align-items:flex-end;">
+              {% render 'purelane-product-icon', handle: 'kbtl' %}
+            </div>
           {% endif %}
           <div class="glass-2 ptag">
             <span class="lbl">{{ section.settings.s1_label | default: 'Single bottle' }}</span>
             <span class="val">
-              <strong>{{ section.settings.s1_price | default: '₹200' }}</strong>
-              <s>{{ section.settings.s1_compare | default: '₹299' }}</s>
+              {% if hero_p1 and hero_p1.price %}
+                <strong>{{ hero_p1.price | money }}</strong>
+                {% if hero_p1.compare_at_price > hero_p1.price %}
+                  <s>{{ hero_p1.compare_at_price | money }}</s>
+                {% elsif section.settings.s1_compare != blank %}
+                  <s>{{ section.settings.s1_compare }}</s>
+                {% endif %}
+              {% else %}
+                <strong>{{ section.settings.s1_price | default: '₹200' }}</strong>
+                <s>{{ section.settings.s1_compare | default: '₹299' }}</s>
+              {% endif %}
             </span>
-            <span class="cut">{{ section.settings.s1_tag | default: '33% off' }}</span>
+            {% if hero_p1 and hero_p1.compare_at_price > hero_p1.price %}
+              {% assign p1_save = hero_p1.compare_at_price | minus: hero_p1.price | times: 100.0 | divided_by: hero_p1.compare_at_price | round %}
+              <span class="cut">{{ p1_save }}% off</span>
+            {% else %}
+              <span class="cut">{{ section.settings.s1_tag | default: '33% off' }}</span>
+            {% endif %}
           </div>
         </div>
 
         {% comment %} Slide 2: 2 Products {% endcomment %}
         <div class="hslide hs2" data-n="2">
           {% assign hero_p2_a = section.settings.product_2_a %}
+          {% if hero_p2_a == blank and collections['all'].products.size > 0 %}
+            {% assign hero_p2_a = collections['all'].products[0] %}
+          {% endif %}
           {% assign hero_p2_b = section.settings.product_2_b %}
+          {% if hero_p2_b == blank and collections['all'].products.size > 1 %}
+            {% assign hero_p2_b = collections['all'].products[1] %}
+          {% elsif hero_p2_b == blank and collections['all'].products.size > 0 %}
+            {% assign hero_p2_b = collections['all'].products[0] %}
+          {% endif %}
+
           {% if hero_p2_a and hero_p2_a.featured_image %}
-            <img src="{{ hero_p2_a.featured_image | image_url: width: 350 }}" alt="{{ hero_p2_a.title | escape }}" class="hp a d1 pimg" style="height:80%;object-fit:contain;">
+            <img
+              src="{{ hero_p2_a.featured_image | image_url: width: 350 }}"
+              srcset="{{ hero_p2_a.featured_image | image_url: width: 175 }} 175w, {{ hero_p2_a.featured_image | image_url: width: 350 }} 350w"
+              sizes="175px"
+              alt="{{ hero_p2_a.featured_image.alt | default: hero_p2_a.title | escape }}"
+              class="hp a d1 pimg"
+              width="350"
+              height="525"
+              style="height:80%;object-fit:contain;"
+              loading="eager"
+            >
           {% else %}
-            <span class="hp p-tbtl a d1" role="img" aria-label="Purelane tap cleaner spray bottle"></span>
+            <div class="hp a d1 pimg" style="height:80%;display:flex;align-items:flex-end;">
+              {% render 'purelane-product-icon', handle: 'tbtl' %}
+            </div>
           {% endif %}
 
           {% if hero_p2_b and hero_p2_b.featured_image %}
-            <img src="{{ hero_p2_b.featured_image | image_url: width: 400 }}" alt="{{ hero_p2_b.title | escape }}" class="hp b d2 pimg" style="height:97%;object-fit:contain;">
+            <img
+              src="{{ hero_p2_b.featured_image | image_url: width: 400 }}"
+              srcset="{{ hero_p2_b.featured_image | image_url: width: 200 }} 200w, {{ hero_p2_b.featured_image | image_url: width: 400 }} 400w"
+              sizes="200px"
+              alt="{{ hero_p2_b.featured_image.alt | default: hero_p2_b.title | escape }}"
+              class="hp b d2 pimg"
+              width="400"
+              height="600"
+              style="height:97%;object-fit:contain;"
+              loading="eager"
+            >
           {% else %}
-            <span class="hp p-kbtl b d2" role="img" aria-label="Purelane kitchen cleaner spray bottle"></span>
+            <div class="hp b d2 pimg" style="height:97%;display:flex;align-items:flex-end;">
+              {% render 'purelane-product-icon', handle: 'kbtl' %}
+            </div>
           {% endif %}
           <div class="glass-2 ptag">
             <span class="lbl">{{ section.settings.s2_label | default: 'Any 2 products' }}</span>
@@ -143,24 +206,74 @@
         {% comment %} Slide 3: 3 Products {% endcomment %}
         <div class="hslide hs3" data-n="3">
           {% assign hero_p3_a = section.settings.product_3_a %}
+          {% if hero_p3_a == blank and collections['all'].products.size > 0 %}
+            {% assign hero_p3_a = collections['all'].products[0] %}
+          {% endif %}
           {% assign hero_p3_b = section.settings.product_3_b %}
+          {% if hero_p3_b == blank and collections['all'].products.size > 1 %}
+            {% assign hero_p3_b = collections['all'].products[1] %}
+          {% elsif hero_p3_b == blank and collections['all'].products.size > 0 %}
+            {% assign hero_p3_b = collections['all'].products[0] %}
+          {% endif %}
           {% assign hero_p3_c = section.settings.product_3_c %}
+          {% if hero_p3_c == blank and collections['all'].products.size > 2 %}
+            {% assign hero_p3_c = collections['all'].products[2] %}
+          {% elsif hero_p3_c == blank and collections['all'].products.size > 0 %}
+            {% assign hero_p3_c = collections['all'].products[0] %}
+          {% endif %}
+
           {% if hero_p3_a and hero_p3_a.featured_image %}
-            <img src="{{ hero_p3_a.featured_image | image_url: width: 300 }}" alt="{{ hero_p3_a.title | escape }}" class="hp a d1 pimg" style="height:75%;object-fit:contain;">
+            <img
+              src="{{ hero_p3_a.featured_image | image_url: width: 300 }}"
+              srcset="{{ hero_p3_a.featured_image | image_url: width: 150 }} 150w, {{ hero_p3_a.featured_image | image_url: width: 300 }} 300w"
+              sizes="150px"
+              alt="{{ hero_p3_a.featured_image.alt | default: hero_p3_a.title | escape }}"
+              class="hp a d1 pimg"
+              width="300"
+              height="450"
+              style="height:75%;object-fit:contain;"
+              loading="eager"
+            >
           {% else %}
-            <span class="hp p-tbtl a d1" role="img" aria-label="Purelane tap cleaner spray bottle"></span>
+            <div class="hp a d1 pimg" style="height:75%;display:flex;align-items:flex-end;">
+              {% render 'purelane-product-icon', handle: 'tbtl' %}
+            </div>
           {% endif %}
 
           {% if hero_p3_b and hero_p3_b.featured_image %}
-            <img src="{{ hero_p3_b.featured_image | image_url: width: 320 }}" alt="{{ hero_p3_b.title | escape }}" class="hp b d2 pimg" style="height:79%;object-fit:contain;">
+            <img
+              src="{{ hero_p3_b.featured_image | image_url: width: 320 }}"
+              srcset="{{ hero_p3_b.featured_image | image_url: width: 160 }} 160w, {{ hero_p3_b.featured_image | image_url: width: 320 }} 320w"
+              sizes="160px"
+              alt="{{ hero_p3_b.featured_image.alt | default: hero_p3_b.title | escape }}"
+              class="hp b d2 pimg"
+              width="320"
+              height="480"
+              style="height:79%;object-fit:contain;"
+              loading="eager"
+            >
           {% else %}
-            <span class="hp p-mbtl b d2" role="img" aria-label="Purelane copper cleaner pump bottle"></span>
+            <div class="hp b d2 pimg" style="height:79%;display:flex;align-items:flex-end;">
+              {% render 'purelane-product-icon', handle: 'mbtl' %}
+            </div>
           {% endif %}
 
           {% if hero_p3_c and hero_p3_c.featured_image %}
-            <img src="{{ hero_p3_c.featured_image | image_url: width: 400 }}" alt="{{ hero_p3_c.title | escape }}" class="hp c d3 pimg" style="height:97%;object-fit:contain;">
+            <img
+              src="{{ hero_p3_c.featured_image | image_url: width: 400 }}"
+              srcset="{{ hero_p3_c.featured_image | image_url: width: 200 }} 200w, {{ hero_p3_c.featured_image | image_url: width: 400 }} 400w"
+              sizes="200px"
+              alt="{{ hero_p3_c.featured_image.alt | default: hero_p3_c.title | escape }}"
+              class="hp c d3 pimg"
+              width="400"
+              height="600"
+              style="height:97%;object-fit:contain;"
+              loading="eager"
+            >
           {% else %}
-            <span class="hp p-kbtl c d3" role="img" aria-label="Purelane kitchen cleaner spray bottle"></span>
+            <div class="hp c d3 pimg" style="height:97%;display:flex;align-items:flex-end;">
+              {% render 'purelane-product-icon', handle: 'kbtl' %}
+            </div>
           {% endif %}
           <div class="glass-2 ptag">
             <span class="lbl">{{ section.settings.s3_label | default: 'Any 3 products' }}</span>

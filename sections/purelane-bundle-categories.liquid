@@ -16,9 +16,20 @@
         <a class="glass cat rv{% if forloop.index > 1 %} rv-d{{ forloop.index | minus: 1 }}{% endif %}" href="{{ block.settings.link | default: '#combos' }}" {{ block.shopify_attributes }}>
           <span class="ph">
             {% if block.settings.image %}
-              <img src="{{ block.settings.image | image_url: width: 300 }}" alt="{{ block.settings.title | escape }}" class="pimg">
+              {{
+                block.settings.image
+                | image_url: width: 300
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '150, 300',
+                  sizes: '150px',
+                  class: 'pimg',
+                  style: 'height:80px;width:auto;object-fit:contain;'
+              }}
             {% else %}
-              <span class="pimg {{ block.settings.img_class | default: 'p-kitchen' }}" role="img"></span>
+              <div style="height:80px;width:60px;display:flex;align-items:center;justify-content:center;">
+                {% render 'purelane-product-icon', handle: block.settings.img_class %}
+              </div>
             {% endif %}
           </span>
           <span class="txt">
@@ -28,19 +39,19 @@
         </a>
       {% else %}
         <a class="glass cat rv" href="#combos">
-          <span class="ph"><span class="pimg p-kitchen" role="img"></span></span>
+          <span class="ph"><div style="height:80px;width:60px;display:flex;align-items:center;justify-content:center;">{% render 'purelane-product-icon', handle: 'kitchen' %}</div></span>
           <span class="txt"><h4>Kitchen bundle</h4><p>Grease, dishes &amp; more</p></span>
         </a>
         <a class="glass cat rv rv-d1" href="#combos">
-          <span class="ph"><span class="pimg p-toilet" role="img"></span></span>
+          <span class="ph"><div style="height:80px;width:60px;display:flex;align-items:center;justify-content:center;">{% render 'purelane-product-icon', handle: 'toilet' %}</div></span>
           <span class="txt"><h4>Bathroom bundle</h4><p>Deep clean &amp; disinfect</p></span>
         </a>
         <a class="glass cat rv rv-d2" href="#combos">
-          <span class="ph"><span class="pimg p-laundry" role="img"></span></span>
+          <span class="ph"><div style="height:80px;width:60px;display:flex;align-items:center;justify-content:center;">{% render 'purelane-product-icon', handle: 'laundry' %}</div></span>
           <span class="txt"><h4>Laundry bundle</h4><p>Softer, fresher wash</p></span>
         </a>
         <a class="glass cat rv rv-d3" href="#combos">
-          <span class="ph"><span class="pimg p-tap" role="img"></span></span>
+          <span class="ph"><div style="height:80px;width:60px;display:flex;align-items:center;justify-content:center;">{% render 'purelane-product-icon', handle: 'tap' %}</div></span>
           <span class="txt"><h4>Hard water bundle</h4><p>Melt away limescale</p></span>
         </a>
       {% endfor %}

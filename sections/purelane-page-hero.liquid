@@ -1,0 +1,88 @@
+{% comment %}
+  Purelane Theme - Universal Page Hero Banner
+  Reusable across About, Contact, Shipping, Policies & custom pages
+{% endcomment %}
+
+{{ 'purelane-theme.css' | asset_url | stylesheet_tag }}
+
+<section class="sec page-hero-sec" id="page-hero-{{ section.id }}" data-scene="1">
+  <div class="wrap">
+    <div class="glass page-hero-card rv">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <a href="{{ routes.root_url }}">Home</a>
+        <span class="crumb-sep" aria-hidden="true">&rsaquo;</span>
+        <span class="crumb-curr" aria-current="page">{{ section.settings.breadcrumb_title | default: page.title | default: 'Page' }}</span>
+      </nav>
+
+      {% if section.settings.kicker != blank %}
+        <span class="kicker" style="display:inline-block;margin-bottom:8px;">{{ section.settings.kicker }}</span>
+      {% endif %}
+
+      <h1 class="d2 page-hero-title">
+        {{ section.settings.title | default: page.title | default: 'Purelane' }}
+      </h1>
+
+      <div class="rule" style="margin:16px auto 14px;">
+        <i></i>
+        {% render 'purelane-svg-icons', icon: 'plant' %}
+        <i></i>
+      </div>
+
+      {% if section.settings.subheading != blank %}
+        <p class="lede page-hero-sub" style="margin:0 auto;">
+          {{ section.settings.subheading }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.badge_text != blank %}
+        <div class="page-hero-badge">
+          <span class="pill">{{ section.settings.badge_text }}</span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane Page Hero",
+  "tag": "section",
+  "class": "purelane-page-hero-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker / Category",
+      "default": "Purelane Homecare"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "About Purelane"
+    },
+    {
+      "type": "text",
+      "id": "breadcrumb_title",
+      "label": "Breadcrumb Label (Optional)"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading / Summary",
+      "default": "Effective cleaning powered by nature. Formulated without harsh toxins, packaged sustainably, and made for homes across India."
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Highlight Badge (Optional)",
+      "default": "100% Plant Derived"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Page Hero"
+    }
+  ]
+}
+{% endschema %}

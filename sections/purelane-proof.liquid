@@ -28,12 +28,24 @@
         {% comment %} Product Rotator Carousel {% endcomment %}
         <div class="glass-2 rot" id="rot" aria-hidden="true">
           <div class="frame">
-            <span class="pimg p-kitchen on" role="img" data-name="Kitchen cleaner" data-note="Foam lifts grease, no scrubbing"></span>
-            <span class="pimg p-tap" role="img" data-name="Tap &amp; limescale" data-note="Melts hard water stains"></span>
-            <span class="pimg p-laundry" role="img" data-name="Laundry detergent" data-note="Tough on odour, soft on fabric"></span>
-            <span class="pimg p-toilet" role="img" data-name="Toilet cleaner" data-note="Kills 99.9% of germs"></span>
-            <span class="pimg p-floor" role="img" data-name="Floor cleaner" data-note="Neem powered, pet safe"></span>
-            <span class="pimg p-dish" role="img" data-name="Dishwash gel" data-note="Cuts grease, kind to hands"></span>
+            <div class="rot-item on" data-name="Kitchen cleaner" data-note="Foam lifts grease, no scrubbing" style="height:180px;display:flex;align-items:center;justify-content:center;">
+              {% render 'purelane-product-icon', handle: 'kitchen' %}
+            </div>
+            <div class="rot-item" data-name="Tap &amp; limescale" data-note="Melts hard water stains" style="height:180px;display:none;align-items:center;justify-content:center;">
+              {% render 'purelane-product-icon', handle: 'tap' %}
+            </div>
+            <div class="rot-item" data-name="Laundry detergent" data-note="Tough on odour, soft on fabric" style="height:180px;display:none;align-items:center;justify-content:center;">
+              {% render 'purelane-product-icon', handle: 'laundry' %}
+            </div>
+            <div class="rot-item" data-name="Toilet cleaner" data-note="Kills 99.9% of germs" style="height:180px;display:none;align-items:center;justify-content:center;">
+              {% render 'purelane-product-icon', handle: 'toilet' %}
+            </div>
+            <div class="rot-item" data-name="Floor cleaner" data-note="Neem powered, pet safe" style="height:180px;display:none;align-items:center;justify-content:center;">
+              {% render 'purelane-product-icon', handle: 'floor' %}
+            </div>
+            <div class="rot-item" data-name="Dishwash gel" data-note="Cuts grease, kind to hands" style="height:180px;display:none;align-items:center;justify-content:center;">
+              {% render 'purelane-product-icon', handle: 'dish' %}
+            </div>
           </div>
           <div class="cap">
             <b>Kitchen cleaner</b>

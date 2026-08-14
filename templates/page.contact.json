@@ -1,25 +1,43 @@
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "page_hero": {
+      "type": "purelane-page-hero",
       "settings": {
-        "padding_top": 36,
-        "padding_bottom": 36
+        "kicker": "Customer Support",
+        "title": "Contact Purelane",
+        "breadcrumb_title": "Contact",
+        "subheading": "Have product questions, need order support, or have delivery questions? Reach out to our team at support@purelane.com.",
+        "badge_text": "Support via Email & WhatsApp"
       }
     },
-    "form": {
-      "type": "contact-form",
+    "contact_form": {
+      "type": "purelane-contact",
       "settings": {
-        "heading": "",
-        "heading_size": "h1",
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "info_kicker": "Customer Support Team",
+        "info_title": "We're Here to Help",
+        "info_description": "Whether you have questions about our plant-derived formulas, need assistance with an active order, or have delivery inquiries, our team is ready to assist you.",
+        "support_email": "support@purelane.com",
+        "email_response_time": "Avg response time: within 4 hours",
+        "support_phone_display": "+91 9930 123 234",
+        "support_phone_link": "+919930123234",
+        "hours_text": "Mon - Sat: 9:30 AM to 6:30 PM IST",
+        "office_address": "Purelane Eco Products Pvt Ltd, 402 Lotus Business Park, Bandra West, Mumbai, Maharashtra 400050",
+        "promise_title": "Customer Care Promise",
+        "promise_text": "If you experience any issues with order delivery, damaged bottles, or product performance, contact us for prompt support.",
+        "form_kicker": "Direct Message",
+        "form_title": "Send us a message",
+        "form_subtitle": "Please fill in your details below. For order-related inquiries, include your Order ID for faster assistance.",
+        "submit_label": "Submit Message"
       }
+    },
+    "trust_bar": {
+      "type": "purelane-trust-bar",
+      "settings": {}
     }
   },
   "order": [
-    "main",
-    "form"
+    "page_hero",
+    "contact_form",
+    "trust_bar"
   ]
 }

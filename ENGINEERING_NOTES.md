@@ -60,7 +60,31 @@ The reference file (`purelane-homepage.html`) provided an impressive visual desi
 
 ---
 
-## 6. What I Would Do With More Time
+## 6. Online Store 2.0 Reusable Page Architecture
+
+To ensure merchant agility without manual page styling or code duplication, the theme has been extended with dedicated Shopify OS 2.0 JSON templates:
+
+| Template | Primary Sections | Purpose & Functionality |
+| :--- | :--- | :--- |
+| **`templates/page.about.json`** | `purelane-page-hero`, `purelane-about`, `purelane-pillars`, `purelane-ingredients`, `purelane-trust-bar`, `purelane-newsletter` | Brand story, philosophy, founder's mission, values grid, and impact statistics. |
+| **`templates/page.contact.json`** | `purelane-page-hero`, `purelane-contact`, `purelane-trust-bar` | Support info sidebar (Email, Helpline, Address, Hours) + native Shopify `{% form 'contact' %}` with accessible validation alerts. |
+| **`templates/page.shipping.json`** | `purelane-page-hero`, `purelane-policy`, `purelane-trust-bar` | Shipping timelines, tracking guidelines, courier SLAs, and COD policies. |
+| **`templates/page.refund.json`** | `purelane-page-hero`, `purelane-policy`, `purelane-trust-bar` | 15-day satisfaction guarantee, return instructions, and refund turnaround timelines. |
+| **`templates/page.privacy.json`** | `purelane-page-hero`, `purelane-policy`, `purelane-trust-bar` | Data protection, SSL encryption, cookie policies, and compliance terms. |
+| **`templates/page.terms.json`** | `purelane-page-hero`, `purelane-policy`, `purelane-trust-bar` | Terms of service, product usage safety, and governing legal jurisdiction. |
+| **`templates/page.json`** | `purelane-page-hero`, `purelane-policy`, `purelane-trust-bar` | Universal fallback template applying Purelane styling to any custom Shopify page. |
+
+---
+
+## 7. Dynamic Navigation & Header/Footer System
+
+1. **Dynamic Navigation Menu**: `sections/purelane-header.liquid` dynamically consumes Shopify navigation menus (`section.settings.menu`) with graceful fallback links (`routes.root_url`, `/collections/all`, `/#bundles`, `/pages/about-us`, `/pages/contact`).
+2. **Mobile Navigation Drawer**: Accessible slide-out glass drawer (`#mobileDrawer`) with backdrop blur and escape key listener for seamless mobile browsing.
+3. **Modular Footer Columns**: `sections/purelane-footer.liquid` supports customizable menu blocks (`type: menu`) and direct links to all store policies and customer care endpoints.
+
+---
+
+## 8. What I Would Do With More Time
 1. **Interactive Custom Bundle Builder**: Build a dynamic slide-out bundle drawer allowing users to mix and match specific products interactively into 2, 3, or 5-item boxes with live total discount calculation.
 2. **Shopify Metaobjects for Ingredients**: Connect the Sourced from Nature section to Shopify Metaobjects so ingredients can be managed centrally in Shopify Admin.
 3. **AJAX Cart Drawer Integration**: Connect product cards directly to Dawn's dynamic drawer cart API for instant slide-over cart feedback without page reloads.

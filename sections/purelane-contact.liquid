@@ -1,0 +1,313 @@
+{% comment %}
+  Purelane Theme - Native Shopify Contact Page Section
+  Combines brand support information with native Shopify {% form 'contact' %}
+{% endcomment %}
+
+{{ 'purelane-theme.css' | asset_url | stylesheet_tag }}
+
+<section class="sec contact-sec" id="contact-{{ section.id }}" data-scene="2">
+  <div class="wrap">
+    <div class="contact-layout">
+
+      {% comment %} Contact Info Sidebar {% endcomment %}
+      <div class="glass contact-info-card rv">
+        <span class="kicker">{{ section.settings.info_kicker | default: 'We are here to help' }}</span>
+        <h2 class="d3" style="margin-top:10px;">{{ section.settings.info_title | default: 'Get in Touch' }}</h2>
+        <p class="body-s" style="margin:12px 0 24px;">
+          {{ section.settings.info_description | default: 'Have questions about our plant-derived formulas, order status, or delivery updates? Our customer support team is here to help.' }}
+        </p>
+
+        <div class="contact-channels">
+          {% comment %} Email {% endcomment %}
+          <div class="contact-channel-item">
+            <span class="channel-icon">
+              {% render 'purelane-svg-icons', icon: 'plant' %}
+            </span>
+            <div class="channel-text">
+              <span class="channel-label">Email Support</span>
+              <a href="mailto:{{ section.settings.support_email | default: 'support@purelane.com' }}" class="channel-link">
+                {{ section.settings.support_email | default: 'support@purelane.com' }}
+              </a>
+              <span class="channel-hint">{{ section.settings.email_response_time | default: 'Avg response time: within 4 hours' }}</span>
+            </div>
+          </div>
+
+          {% comment %} Phone / WhatsApp {% endcomment %}
+          <div class="contact-channel-item">
+            <span class="channel-icon">
+              {% render 'purelane-svg-icons', icon: 'shield' %}
+            </span>
+            <div class="channel-text">
+              <span class="channel-label">Helpline &amp; WhatsApp</span>
+              <a href="tel:{{ section.settings.support_phone_link | default: '+919930123234' }}" class="channel-link">
+                {{ section.settings.support_phone_display | default: '+91 9930 123 234' }}
+              </a>
+              <span class="channel-hint">{{ section.settings.hours_text | default: 'Mon - Sat: 9:30 AM to 6:30 PM IST' }}</span>
+            </div>
+          </div>
+
+          {% comment %} Address / HQ {% endcomment %}
+          <div class="contact-channel-item">
+            <span class="channel-icon">
+              {% render 'purelane-svg-icons', icon: 'globe' %}
+            </span>
+            <div class="channel-text">
+              <span class="channel-label">Registered Office</span>
+              <p class="channel-hint" style="margin:0;line-height:1.5;">
+                {{ section.settings.office_address | default: 'Purelane Eco Products Pvt Ltd, 402 Lotus Business Park, Bandra West, Mumbai, Maharashtra 400050' }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} Guarantee Callout {% endcomment %}
+        <div class="contact-promise glass-2">
+          <div class="promise-header">
+            {% render 'purelane-svg-icons', icon: 'check' %}
+            <b>{{ section.settings.promise_title | default: '100% Happiness Guarantee' }}</b>
+          </div>
+          <p style="font-size:12.5px;margin:6px 0 0;color:var(--paper-2);line-height:1.5;">
+            {{ section.settings.promise_text | default: 'If a product does not perform to your complete satisfaction, reach out to us within 15 days for a replacement or full refund.' }}
+          </p>
+        </div>
+      </div>
+
+      {% comment %} Native Shopify Contact Form {% endcomment %}
+      <div class="glass contact-form-card rv rv-d1">
+        <span class="kicker">{{ section.settings.form_kicker | default: 'Direct Message' }}</span>
+        <h2 class="d3" style="margin-top:10px;">{{ section.settings.form_title | default: 'Send us a message' }}</h2>
+        <p class="body-s" style="margin:8px 0 20px;">
+          {{ section.settings.form_subtitle | default: 'Fill in your details below and we will get back to you shortly.' }}
+        </p>
+
+        {% form 'contact', class: 'purelane-native-contact-form', id: 'ContactForm' %}
+          {% if form.posted_successfully? %}
+            <div class="form-alert form-alert-success" tabindex="-1" autofocus role="alert">
+              <span class="alert-icon">{% render 'purelane-svg-icons', icon: 'check' %}</span>
+              <div>
+                <b>Thank you for contacting Purelane!</b>
+                <p style="margin:4px 0 0;font-size:13px;">Your message has been received. Our team will get back to you within 24 business hours.</p>
+              </div>
+            </div>
+          {% elsif form.errors %}
+            <div class="form-alert form-alert-error" tabindex="-1" autofocus role="alert">
+              <span class="alert-icon">{% render 'purelane-svg-icons', icon: 'ban' %}</span>
+              <div>
+                <b>Please review the highlighted fields:</b>
+                <ul style="margin:6px 0 0;padding-left:18px;font-size:13px;">
+                  {% for error in form.errors %}
+                    <li>{{ form.errors.translated_fields[error] | capitalize }} {{ form.errors.messages[error] }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          {% endif %}
+
+          <div class="form-grid">
+            {% comment %} Full Name {% endcomment %}
+            <div class="field-group">
+              <label for="ContactForm-name" class="field-label">Full Name <span class="req">*</span></label>
+              <input
+                type="text"
+                id="ContactForm-name"
+                name="contact[name]"
+                class="purelane-input"
+                value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                placeholder="e.g. Priya Sharma"
+                required
+                autocomplete="name"
+              >
+            </div>
+
+            {% comment %} Email Address {% endcomment %}
+            <div class="field-group">
+              <label for="ContactForm-email" class="field-label">Email Address <span class="req">*</span></label>
+              <input
+                type="email"
+                id="ContactForm-email"
+                name="contact[email]"
+                class="purelane-input"
+                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                placeholder="priya@example.com"
+                required
+                spellcheck="false"
+                autocomplete="email"
+                aria-required="true"
+              >
+            </div>
+
+            {% comment %} Phone Number {% endcomment %}
+            <div class="field-group">
+              <label for="ContactForm-phone" class="field-label">Phone Number (Optional)</label>
+              <input
+                type="tel"
+                id="ContactForm-phone"
+                name="contact[phone]"
+                class="purelane-input"
+                value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+                placeholder="+91 98765 43210"
+                autocomplete="tel"
+              >
+            </div>
+
+            {% comment %} Order Number (Optional) {% endcomment %}
+            <div class="field-group">
+              <label for="ContactForm-order" class="field-label">Order # (if applicable)</label>
+              <input
+                type="text"
+                id="ContactForm-order"
+                name="contact[order_number]"
+                class="purelane-input"
+                placeholder="e.g. #PL-10452"
+              >
+            </div>
+
+            {% comment %} Subject / Topic {% endcomment %}
+            <div class="field-group full-width">
+              <label for="ContactForm-topic" class="field-label">Reason for Inquiry</label>
+              <select id="ContactForm-topic" name="contact[topic]" class="purelane-input purelane-select">
+                <option value="General Inquiry">General Question / Product Inquiry</option>
+                <option value="Order Tracking">Order Status &amp; Tracking</option>
+                <option value="Bundle / Custom Box">Bundle Builder &amp; Discount Inquiry</option>
+                <option value="Returns / Refunds">Returns, Replacements &amp; Refunds</option>
+                <option value="Wholesale / Partnerships">Bulk Orders &amp; Corporate Gifting</option>
+              </select>
+            </div>
+
+            {% comment %} Message / Comment {% endcomment %}
+            <div class="field-group full-width">
+              <label for="ContactForm-body" class="field-label">How can we help you? <span class="req">*</span></label>
+              <textarea
+                rows="6"
+                id="ContactForm-body"
+                name="contact[body]"
+                class="purelane-input purelane-textarea"
+                placeholder="Write your message here..."
+                required
+              >{% if form.body %}{{ form.body }}{% endif %}</textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="margin-top:20px;width:100%;justify-content:center;">
+            {{ section.settings.submit_label | default: 'Send Message' }}
+            {% render 'purelane-svg-icons', icon: 'arrow-right' %}
+          </button>
+        {% endform %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane Contact Form",
+  "tag": "section",
+  "class": "purelane-contact-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Contact Information Sidebar"
+    },
+    {
+      "type": "text",
+      "id": "info_kicker",
+      "label": "Info Kicker",
+      "default": "We are here to help"
+    },
+    {
+      "type": "text",
+      "id": "info_title",
+      "label": "Info Heading",
+      "default": "Get in Touch"
+    },
+    {
+      "type": "textarea",
+      "id": "info_description",
+      "label": "Info Description",
+      "default": "Have a question about our formulas, an active order, or subscription bundles? Our customer care team is available 6 days a week."
+    },
+    {
+      "type": "text",
+      "id": "support_email",
+      "label": "Support Email",
+      "default": "support@purelane.com"
+    },
+    {
+      "type": "text",
+      "id": "email_response_time",
+      "label": "Email Response Note",
+      "default": "Avg response time: within 4 hours"
+    },
+    {
+      "type": "text",
+      "id": "support_phone_display",
+      "label": "Phone Number (Display)",
+      "default": "+91 9930 123 234"
+    },
+    {
+      "type": "text",
+      "id": "support_phone_link",
+      "label": "Phone Number (tel: link)",
+      "default": "+919930123234"
+    },
+    {
+      "type": "text",
+      "id": "hours_text",
+      "label": "Operating Hours",
+      "default": "Mon - Sat: 9:30 AM to 6:30 PM IST"
+    },
+    {
+      "type": "textarea",
+      "id": "office_address",
+      "label": "Office Address",
+      "default": "Purelane Eco Products Pvt Ltd, 402 Lotus Business Park, Bandra West, Mumbai, Maharashtra 400050"
+    },
+    {
+      "type": "text",
+      "id": "promise_title",
+      "label": "Guarantee Title",
+      "default": "100% Happiness Guarantee"
+    },
+    {
+      "type": "textarea",
+      "id": "promise_text",
+      "label": "Guarantee Text",
+      "default": "If a product does not perform to your complete satisfaction, reach out to us within 15 days for a replacement or full refund."
+    },
+    {
+      "type": "header",
+      "content": "Contact Form"
+    },
+    {
+      "type": "text",
+      "id": "form_kicker",
+      "label": "Form Kicker",
+      "default": "Direct Message"
+    },
+    {
+      "type": "text",
+      "id": "form_title",
+      "label": "Form Heading",
+      "default": "Send us a message"
+    },
+    {
+      "type": "textarea",
+      "id": "form_subtitle",
+      "label": "Form Subtitle",
+      "default": "Fill in your details below and we will get back to you shortly."
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "label": "Submit Button Label",
+      "default": "Send Message"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Contact Form"
+    }
+  ]
+}
+{% endschema %}

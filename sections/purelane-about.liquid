@@ -1,0 +1,241 @@
+{% comment %}
+  Purelane Theme - About Us Story & Brand Mission Section
+  Visual fidelity: Glassmorphic cards, Outfit/Inter typography, botanical accents
+{% endcomment %}
+
+{{ 'purelane-theme.css' | asset_url | stylesheet_tag }}
+
+<section class="sec about-sec" id="about-{{ section.id }}" data-scene="1">
+  <div class="wrap">
+
+    {% comment %} Mission Banner {% endcomment %}
+    <div class="glass about-mission-card rv">
+      <div class="about-mission-grid">
+        <div class="about-mission-text">
+          <span class="kicker">{{ section.settings.mission_kicker | default: 'Our Philosophy' }}</span>
+          <h2 class="d2" style="margin-top:10px;">{{ section.settings.mission_title | default: 'Cleaning that belongs in modern Indian homes.' }}</h2>
+          <div class="rule" style="margin:16px 0;">
+            <i></i>
+            {% render 'purelane-svg-icons', icon: 'plant' %}
+            <i></i>
+          </div>
+          <p class="lede" style="margin-bottom:16px;">
+            {{ section.settings.mission_paragraph_1 | default: 'We started Purelane with one simple question: why do everyday cleaners still use toxic chemicals from the 1970s that require rubber gloves and ventilating the room?' }}
+          </p>
+          <p class="body-s">
+            {{ section.settings.mission_paragraph_2 | default: 'Indian homes face unique cleaning challenges — heavy grease from tadka cooking, stubborn hard-water limescale on bathroom fittings, and monsoons that bring damp floors. Purelane was engineered specifically for these realities using bio-enzymes, coconut surfactants, and cold-pressed essential oils.' }}
+          </p>
+        </div>
+
+        <div class="about-mission-highlight glass-2">
+          <div class="highlight-badge">
+            {% render 'purelane-svg-icons', icon: 'shield' %}
+            <span>Our Core Standard</span>
+          </div>
+          <h3 class="d4" style="margin:14px 0 8px;">Zero Compromise Cleaning</h3>
+          <p class="body-s" style="font-size:13.5px;color:var(--paper-2);margin-bottom:16px;">
+            Every single batch is dermatologically tested, cruelty-free, and certified non-toxic for families with toddlers and pets.
+          </p>
+          <div class="highlight-checkmarks">
+            <div class="check-item">
+              {% render 'purelane-svg-icons', icon: 'check' %}
+              <span>100% Biodegradable Surfactants</span>
+            </div>
+            <div class="check-item">
+              {% render 'purelane-svg-icons', icon: 'check' %}
+              <span>0% SLS, Bleach, Ammonia &amp; Parabens</span>
+            </div>
+            <div class="check-item">
+              {% render 'purelane-svg-icons', icon: 'check' %}
+              <span>Food-contact Safe Kitchen Sprays</span>
+            </div>
+            <div class="check-item">
+              {% render 'purelane-svg-icons', icon: 'check' %}
+              <span>100% Recyclable HDPE Packaging</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% comment %} Core Pillars Grid {% endcomment %}
+    <div class="about-pillars-grid" style="margin-top:24px;">
+      {% for block in section.blocks %}
+        {% if block.type == 'pillar' %}
+          <div class="glass about-pillar-card rv{% if forloop.index > 1 %} rv-d{{ forloop.index | minus: 1 }}{% endif %}" {{ block.shopify_attributes }}>
+            <span class="pillar-icon-badge">
+              {% render 'purelane-svg-icons', icon: block.settings.icon %}
+            </span>
+            <h3 class="d4" style="margin-top:14px;">{{ block.settings.title }}</h3>
+            <p class="body-s" style="margin-top:8px;font-size:13.5px;">{{ block.settings.text }}</p>
+          </div>
+        {% endif %}
+      {% else %}
+        <div class="glass about-pillar-card rv">
+          <span class="pillar-icon-badge">{% render 'purelane-svg-icons', icon: 'plant' %}</span>
+          <h3 class="d4" style="margin-top:14px;">Plant Derived</h3>
+          <p class="body-s" style="margin-top:8px;font-size:13.5px;">Powered by soap nuts, orange peel extracts, and coconut oils that dissolve grime on contact.</p>
+        </div>
+        <div class="glass about-pillar-card rv rv-d1">
+          <span class="pillar-icon-badge">{% render 'purelane-svg-icons', icon: 'shield' %}</span>
+          <h3 class="d4" style="margin-top:14px;">Family &amp; Pet Safe</h3>
+          <p class="body-s" style="margin-top:8px;font-size:13.5px;">Safe for homes where kids crawl on the floor and pets explore every corner freely.</p>
+        </div>
+        <div class="glass about-pillar-card rv rv-d2">
+          <span class="pillar-icon-badge">{% render 'purelane-svg-icons', icon: 'recycle' %}</span>
+          <h3 class="d4" style="margin-top:14px;">Conscious Living</h3>
+          <p class="body-s" style="margin-top:8px;font-size:13.5px;">Concentrated formulas and multi-product bundles that eliminate unnecessary plastic waste.</p>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% comment %} Core Standards / Highlights Bar {% endcomment %}
+    {% if section.settings.show_stats %}
+      <div class="glass-2 stats about-stats rv" style="margin-top:24px;">
+        <div class="stat">
+          <div class="ring">{{ section.settings.stat_1_val | default: '100%' }}</div>
+          <h5>{{ section.settings.stat_1_title | default: 'Plant Derived' }}</h5>
+          <p>{{ section.settings.stat_1_desc | default: 'Biodegradable cleaning actives' }}</p>
+        </div>
+        <div class="stat">
+          <div class="ring">{{ section.settings.stat_2_val | default: '0%' }}</div>
+          <h5>{{ section.settings.stat_2_title | default: 'Harsh Chemicals' }}</h5>
+          <p>{{ section.settings.stat_2_desc | default: 'No bleach, SLS, or parabens' }}</p>
+        </div>
+        <div class="stat">
+          <div class="ring">{{ section.settings.stat_3_val | default: '4.8★' }}</div>
+          <h5>{{ section.settings.stat_3_title | default: 'Customer Rating' }}</h5>
+          <p>{{ section.settings.stat_3_desc | default: 'Verified customer satisfaction' }}</p>
+        </div>
+        <div class="stat">
+          <div class="ring">{{ section.settings.stat_4_val | default: '100%' }}</div>
+          <h5>{{ section.settings.stat_4_title | default: 'Recyclable' }}</h5>
+          <p>{{ section.settings.stat_4_desc | default: 'Thoughtful packaging design' }}</p>
+        </div>
+      </div>
+    {% endif %}
+
+    {% comment %} Call to Action Banner {% endcomment %}
+    <div class="glass about-cta-card rv" style="margin-top:24px;text-align:center;padding:42px 24px;">
+      <span class="kicker">{{ section.settings.cta_kicker | default: 'Ready to make the switch?' }}</span>
+      <h2 class="d3" style="margin:10px auto 12px;max-width:30ch;">{{ section.settings.cta_title | default: 'Experience clean that lasts without the toxins.' }}</h2>
+      <p class="lede" style="margin:0 auto 24px;max-width:40ch;">
+        {{ section.settings.cta_subtitle | default: 'Build your custom bundle today with any 3 formulas for just ₹499 with free shipping across India.' }}
+      </p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <a href="{% if section.settings.cta_btn_1_link != blank %}{{ section.settings.cta_btn_1_link }}{% else %}{{ routes.root_url }}#bundles{% endif %}" class="btn btn-primary">
+          {{ section.settings.cta_btn_1_label | default: 'Build Your Bundle' }}
+          {% render 'purelane-svg-icons', icon: 'arrow-right' %}
+        </a>
+        <a href="{% if section.settings.cta_btn_2_link != blank %}{{ section.settings.cta_btn_2_link }}{% else %}{{ routes.all_products_collection_url }}{% endif %}" class="btn btn-ghost">
+          {{ section.settings.cta_btn_2_label | default: 'Explore All Products' }}
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane About Story",
+  "tag": "section",
+  "class": "purelane-about-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Mission & Philosophy"
+    },
+    {
+      "type": "text",
+      "id": "mission_kicker",
+      "label": "Mission Kicker",
+      "default": "Our Philosophy"
+    },
+    {
+      "type": "text",
+      "id": "mission_title",
+      "label": "Mission Heading",
+      "default": "Cleaning that belongs in modern Indian homes."
+    },
+    {
+      "type": "textarea",
+      "id": "mission_paragraph_1",
+      "label": "Mission Paragraph 1",
+      "default": "We started Purelane with one simple question: why do everyday cleaners still use toxic chemicals from the 1970s that require rubber gloves and ventilating the room?"
+    },
+    {
+      "type": "textarea",
+      "id": "mission_paragraph_2",
+      "label": "Mission Paragraph 2",
+      "default": "Indian homes face unique cleaning challenges — heavy grease from tadka cooking, stubborn hard-water limescale on bathroom fittings, and monsoons that bring damp floors. Purelane was engineered specifically for these realities using bio-enzymes, coconut surfactants, and cold-pressed essential oils."
+    },
+    {
+      "type": "header",
+      "content": "Core Standards / Highlights"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stats",
+      "label": "Show Standards / Highlights Bar",
+      "default": true
+    },
+    { "type": "text", "id": "stat_1_val", "label": "Highlight 1 Number/Tag", "default": "100%" },
+    { "type": "text", "id": "stat_1_title", "label": "Highlight 1 Title", "default": "Plant Derived" },
+    { "type": "text", "id": "stat_1_desc", "label": "Highlight 1 Description", "default": "Biodegradable cleaning actives" },
+    { "type": "text", "id": "stat_2_val", "label": "Highlight 2 Number/Tag", "default": "0%" },
+    { "type": "text", "id": "stat_2_title", "label": "Highlight 2 Title", "default": "Harsh Chemicals" },
+    { "type": "text", "id": "stat_2_desc", "label": "Highlight 2 Description", "default": "No bleach, SLS, or parabens" },
+    { "type": "text", "id": "stat_3_val", "label": "Highlight 3 Number/Tag", "default": "4.8★" },
+    { "type": "text", "id": "stat_3_title", "label": "Highlight 3 Title", "default": "Customer Rating" },
+    { "type": "text", "id": "stat_3_desc", "label": "Highlight 3 Description", "default": "Verified customer satisfaction" },
+    { "type": "text", "id": "stat_4_val", "label": "Highlight 4 Number/Tag", "default": "100%" },
+    { "type": "text", "id": "stat_4_title", "label": "Highlight 4 Title", "default": "Recyclable" },
+    { "type": "text", "id": "stat_4_desc", "label": "Highlight 4 Description", "default": "Thoughtful packaging design" },
+    {
+      "type": "header",
+      "content": "Call to Action"
+    },
+    { "type": "text", "id": "cta_kicker", "label": "CTA Kicker", "default": "Ready to make the switch?" },
+    { "type": "text", "id": "cta_title", "label": "CTA Heading", "default": "Experience clean that lasts without the toxins." },
+    { "type": "textarea", "id": "cta_subtitle", "label": "CTA Subtitle", "default": "Build your custom bundle today with any 3 formulas for just ₹499 with free shipping across India." },
+    { "type": "text", "id": "cta_btn_1_label", "label": "Button 1 Label", "default": "Build Your Bundle" },
+    { "type": "url", "id": "cta_btn_1_link", "label": "Button 1 Link" },
+    { "type": "text", "id": "cta_btn_2_label", "label": "Button 2 Label", "default": "Explore All Products" },
+    { "type": "url", "id": "cta_btn_2_link", "label": "Button 2 Link" }
+  ],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Value Pillar",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "plant", "label": "Plant" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "recycle", "label": "Recycle" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "globe", "label": "Globe" }
+          ],
+          "default": "plant"
+        },
+        { "type": "text", "id": "title", "label": "Pillar Title", "default": "Plant Derived" },
+        { "type": "textarea", "id": "text", "label": "Pillar Description", "default": "Powered by soap nuts, orange peel extracts, and coconut oils that dissolve grime on contact." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane About Story",
+      "blocks": [
+        { "type": "pillar", "settings": { "icon": "plant", "title": "Plant Derived", "text": "Powered by soap nuts, orange peel extracts, and coconut oils that dissolve grime on contact." } },
+        { "type": "pillar", "settings": { "icon": "shield", "title": "Family & Pet Safe", "text": "Safe for homes where kids crawl on the floor and pets explore every corner freely." } },
+        { "type": "pillar", "settings": { "icon": "recycle", "title": "Conscious Living", "text": "Concentrated formulas and multi-product bundles that eliminate unnecessary plastic waste." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
